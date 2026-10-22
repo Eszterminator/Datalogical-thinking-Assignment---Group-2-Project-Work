@@ -1,18 +1,7 @@
 //notes during the process - messy, in progress
+//22 october: will rewrite the algorithm based on the new dataset found 
 
-
-Table: Books
-Book_id Title, author, page_num, genre
-
-Table: Ratings
-Book_id, user_id, rating
-
-If we have multiple genres for books, need another table:
-Genre_id, genre_name 
-And the linking table 
-Book_id, genre_id 
-
-Should we limit genre options to some - and the user can click on one of the options: multiple choice, that way we don’t have to have endless rows of data
+Should we limit genre options to some - and the user can click on one of the options: multiple choice, that way we don’t have to have endless rows of data?
     Fantasy 
     Crime 
     General Fiction
@@ -47,20 +36,18 @@ IF genre_found is false
     WRITE "No books found under the genre, try another genre:"
     SET user_genre to input 
 
-
+//this step is redundant with the new dataset we switched to that has the averages already
 2. Will need an average of the ratings for each specific book and a sum of how many users it is from 
     Avg_rating variable created 
     Probably go inside the above if statement (instead of the DISPLAY line)
-    Table used: ratings and books
+    Tables used: ratings and books
     Maybe first I select all the ratings that are for books in the right genre - should i just have everything in a mega table for ease? But then it is not normalised 
     I am marking tables with . - books.book_id meaning book_id attribute in books table etc
 
 Set sum=0
 Set count = 0
 Set index_books =0
-Set index_ratings
-
-//could i create an array, or table with the books in the right genre, then take it from there, so i dont have to always go through all the books? 
+Set index_ratings 
 
 WHILE index_books <length-1(books)
     IF (Books.genre == user_genre) 
@@ -159,19 +146,26 @@ IF genre_found = false
     
 
 #python experimenting
+import pandas as pd
 
+#read in the data file as dataframe 
+books = pd.read_csv("goodreads.csv")
+
+#get the user input
 print(“Pick one of the following genres you would like to read: Fantasy, Crime, General Fiction, Romance, History”)
 user_genre = input()
 speed = int(input(“How many pages a day do you read?”))
 
-import pandas as pd
-#how can i read both tables and use columns from each? or one by one? 
-df.books = pd.read_csv("filename and location for books table")
-df.ratings = pd.read_csv ("filename,location ratings table")
-#are there any columns to filter out
+#select the ones where the genre matches user input 
+Filtered_genre = books[books[“genre”] == user_genre]
 
-#a list or rows of books where the genre is the one specificed
-df.loc[df['Books'] == user_genre]
+#create speed of reading column, first copying dataframe before modying 
+filtered_speed=filtered_genre.copy()
+Filtered_speed[“days”] = (filtered_speed[“page_count”]/speed)
 
-#could I just use python built-in sort?
-df(books["avg_rating"]).sort 
+#sort the filtered list by the avg_ratings 
+Sorted_books = filtered_speed.sort_values(by=”avg_rating”, ascending=false)
+Top_10 = sorted_books.head(10)
+print(top_10)
+
+
