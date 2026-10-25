@@ -1,8 +1,8 @@
 /* Feel free to change me and make me your own! */
 
 body {
-  background-color: #7ae5ef; 
-  font-family: Georgia, serif; 
+  background-color: #8FBC8F; 
+  font-family: Garamond, serif; 
 }
 
 article {
@@ -49,4 +49,34 @@ img.copyright_logo {
 
 .course-logo {
   width: 35vw;
+}
+
+
+
+
+
+
+
+/*from here it was not part of the template*/
+
+#picright  {
+ float: right;   
+ margin: 0 0 0 15px;
+ width: 400px;
+ height: auto;
+}
+
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.bottom-right {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
 }
