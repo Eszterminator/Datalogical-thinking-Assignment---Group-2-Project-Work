@@ -31,7 +31,7 @@ while(run_again):
 
 #create a time of reading column, first copying dataframe before modying 
  filtered_speed=filtered_genre.copy()
- filtered_speed["days"] = float((filtered_speed["pg_count"]/speed))
+ filtered_speed["days"] = (filtered_speed["pg_count"]/speed)
 
 #sort the filtered list by the avg_ratings descending and time to read ascending 
  sorted_books = filtered_speed.sort_values(by=["avg_rating", "days"], ascending=[False, True])
@@ -77,7 +77,7 @@ while(run_again):
     if sorted_books.iloc[index]["days"] <= timeframe:
      low_rated.append(sorted_books.iloc[index])   
      time = True
-     index += 1
+    index += 1
     
    if time:
     low_rated_df = pd.DataFrame(low_rated)
