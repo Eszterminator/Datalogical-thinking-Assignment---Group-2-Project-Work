@@ -101,3 +101,12 @@ ol {
   padding-left: 20px;
   padding-right: 20px;
 }
+
+#picbottom {
+  float: center;
+  margin: auto;
+  width:auto;
+  height: auto;
+  border-style: outset;
+  border-width: 5px;
+}
