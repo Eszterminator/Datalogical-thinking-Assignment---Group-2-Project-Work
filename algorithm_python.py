@@ -3,7 +3,7 @@ import pandas as pd
 #read in the data file as dataframe 
 books = pd.read_csv(r"C:\Users\madar\Documents\Masters degree Boras uni\datalogical thinking\goodreads.csv")
 
-#to have the program run again, asking for another genre if they want to at the end 
+#to repeat the program, asking for another genre if they want to at the end 
 run_again = True
 genres = ["Fantasy", "Fiction", "Classics", "Young Adult"]
 
@@ -15,7 +15,7 @@ while(run_again):
  while user_genre not in genres:
   if user_genre=="end":
    print("Thank you for trying our programme")
-   break
+   exit()
   else:
    print("Invalid genre. Please choose from Fantasy, Fiction, Young Adult or Classics")
   user_genre = input()
@@ -42,7 +42,8 @@ while(run_again):
 #show books that can be read under time limit from the genre list above 
  timeframe = input("How many days do you have available to read your next book?")
  timeframe = float(timeframe)
-#add a value error check here  
+ while not timeframe.isdigit() or int(timeframe) <= 0:
+  print("Enter a positive number please:")  
  
 #first we filter only from the top 10 list above 
  print("You can read the following ",user_genre,"books from the top 10 list in ",timeframe,"days: ")
