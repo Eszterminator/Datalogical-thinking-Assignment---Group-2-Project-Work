@@ -7,12 +7,13 @@ body {
 }
 
 article {
-  margin-left: 10vw; 
-  margin-right: 10vw; 
+  margin-left: 6vw; 
+  margin-right: 6vw; 
 }
 
 h1 {
   font-size: 48px; 
+  text-align: center;
 }
 
 h2 {
@@ -59,6 +60,25 @@ img.copyright_logo {
 
 
 /*from here it was not part of the template*/
+
+h3 {
+  font-size: 26px; 
+  font-style: bold;
+}
+
+ol {
+  font-size: 20px; 
+  font-style: italic;
+}
+
+.decisions {
+  width: 90%;
+  height: auto;
+  padding: 10px;
+  border: 7px solid gray;
+  margin: 0;
+  background-color: #b48b9c;
+}
 
 #picright  {
  float: right;   
