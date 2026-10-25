@@ -1,89 +1,97 @@
-#python
 import pandas as pd
 
 #read in the data file as dataframe 
-books = pd.read_csv("goodreads.csv")
+books = pd.read_csv(r"C:\Users\madar\Documents\Masters degree Boras uni\datalogical thinking\goodreads.csv")
 
-#get the user input
-print(“Pick one of the following genres you would like to read: Fantasy, Crime, General Fiction, Young Adult”)
-user_genre = input()
-speed = int(input(“How many pages a day do you read?”))
-#ADD HERE A LINE ABOUT CHECKING WHETHER IT IS VALID INPUT FROM THE ONES ABOVE 
+#to have the program run again, asking for another genre if they want to at the end 
+run_again = True
+genres = ["Fantasy", "Fiction", "Classics", "Young Adult"]
 
+while(run_again):
+#getting the user input and validating it
 
+ print("Pick one of the following genres you would like to read: Fantasy, Fiction, Young Adult, Classics. Write END to exit")
+ user_genre = input()
+ while user_genre not in genres:
+  if user_genre=="end":
+   print("Thank you for trying our programme")
+   break
+  else:
+   print("Invalid genre. Please choose from Fantasy, Fiction, Young Adult or Classics")
+  user_genre = input()
+  
+ speed = input("How many pages a day do you read?")
+ while not speed.isdigit() or int(speed) <= 0:
+   print("Enter a positive number please:")
+   speed = input("How many pages a day do you read?")
+ speed=int(speed)
+ 
 #select the ones where the genre matches user input 
-filtered_genre = books[books[“genre”] == user_genre]
+ filtered_genre = books[books["genre"] == user_genre]
 
+#create a time of reading column, first copying dataframe before modying 
+ filtered_speed=filtered_genre.copy()
+ filtered_speed["days"] = float((filtered_speed["pg_count"]/speed))
 
-#create speed of reading column, first copying dataframe before modying 
-filtered_speed=filtered_genre.copy()
-filtered_speed[“days”] = (filtered_speed[“page_count”]/speed)
-
-
-#sort the filtered list by the avg_ratings 
-Sorted_books = filtered_speed.sort_values(by = ”avg_rating”, ascending = false)
-top_10 = sorted_books.head(10)
-print("Please see the top 10 rated ", user_genre, "books , and the number of days they would take to read at ", speed, " pages read per day: ", top_10)
-
-
+#sort the filtered list by the avg_ratings descending and time to read ascending 
+ sorted_books = filtered_speed.sort_values(by=["avg_rating", "days"], ascending=[False, True])
+ top_10 = sorted_books.head(10)
+ print("The top 10 rated",user_genre,"books, and the number of days they would take to read at",speed,"pages per day:")
+ print(top_10[["title", "author", "avg_rating", "days"]].to_string(index=False))
 
 #show books that can be read under time limit from the genre list above 
-print(“How many days do you have to read your next book?”)
-timeframe = float.input() 
-
-#first i’ll create a darataframe where they are sorted ascending by days they would take to read, so when i go through them checking which fits the time limit i can stop display them in growing time order and stop when reach max 
-#i am also sorting them by avg_rating descending, so they still display as top 
-
-Sorted_books_days = filtered_speed.sort_values(by =[“avg_rating”, ”days”], ascending = [false, true])
-
-fits_time = true 
-index = 0
-Count = 0
-Print (“The following ", user_genre, " books can be read in ”, timelimit, “days, sorted by highest rated:”)
-while index<len(sorted_books_days) and fits_time = true
-	if sorted_books_days[“days”] <= timeframe
-		print sorted_books_days.loc[index] //look up correct formula to print record by index
-		index = index+1
-	else 
-		fits_time = false 
-
-#MAKE THIS INTO A FUNCTION TO BE USED AGAIN BELOW 
+ timeframe = input("How many days do you have available to read your next book?")
+ timeframe = float(timeframe)
+#add a value error check here  
  
-#an extra step added here to expand algorithm? DISCUSS
-#make this author step about all books, not genre specific, or group by genre actually 
+#first we filter only from the top 10 list above 
+ print("You can read the following ",user_genre,"books from the top 10 list in ",timeframe,"days: ")
+ index = 0
+ count = 0
+ found = False
+ suitable_books=[]
+ 
+ while index<len(top_10):
+  if top_10.iloc[index]["days"] <= timeframe:
+   suitable_books.append(top_10.iloc[index])
+   found = True
+  index += 1
+ 
+ if found:
+    suitable_books_df = pd.DataFrame(suitable_books)
+    print(suitable_books_df[["title", "author", "avg_rating", "days"]].to_string(index=False))
+ else:
+  print("None of the top 10 rated books in the ",user_genre,"category can be read in ", timeframe, "days.")
+  
+  print("Would you like a lower rated recommendation? Write Yes or No")
+  user_decision=input().lower()
+  low_rated=[]
+  while user_decision not in ("yes", "no"):
+   print("Invalid input, please write yes or no.")
+   user_decision=input().lower()	
+	
+  if user_decision=="yes":
+   index = 0
+   time = False
+   while index<len(sorted_books):
+    if sorted_books.iloc[index]["days"] <= timeframe:
+     low_rated.append(sorted_books.iloc[index])   
+     time = True
+     index += 1
+    
+   if time:
+    low_rated_df = pd.DataFrame(low_rated)
+    print(low_rated_df[["title", "author", "avg_rating", "days"]].to_string(index=False)) 
+   else:
+    print("None of the books in the ", user_genre, "category can be read in", timeframe, "days.") 
+         
+  elif user_decision=="no":
+   print("Would you like to pick another genre? Write yes or no")
+   user_runagain=input().lower()
+   if user_runagain=="no":
+    run_again=False
+    print("Thank you for using our programme!")
 
-print(“Is there a specific author you would like to read? State their name:”)
-User_author = str.input()
-
-#filter for the author in all genres 
-filtered_author = books[books[“author”] == user_author]
-
-#sort by days ascending and average rating descending 
-Sorted_books_author = filtered_author.sort_values(by =[“avg_rating”, ”days”], ascending = [false, true])
-
-fits_time = true 
-Author = false
-index = 0
-
-While index<len(sorted_books_days) and fits_time is true
-If  sorted_books_days[“author”]=author 
-#replace by the function from above 
-Author = true 
-	If sorted_books_days[“days”] <= timeframe
-				Print loc.sorted_books_days(index)
-			Else 
-				Fits_time = false 
-Index = index+1
-
-If author = true and fits_time = false
-	print(“None of the author’s books can be read in the given timeframe”)
-Elseif author = false 
-	Print (“No books were found by the author”)
 
 
 
-#further ideas:
-#Could potentially add an algorithm step where i display the image with the books? 
-#Extra: i will add some lines for cleainng in the python and argue that in order to avoid human error etc 
-#POTENTIALLY CREATE A FAKE USER DATABASE AND THEN CAN QUERY IT LIKE INPUT USER ID AND WILL GIVE YOU WHAT YOUR AVERAGE RATINGS ARE IN EACH GENRE
-#OR ALL THE BOOKS YOU RATED TOP DOWN TO FIND YOUR FAVOURITE?

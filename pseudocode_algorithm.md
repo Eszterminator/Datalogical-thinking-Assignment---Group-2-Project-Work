@@ -22,9 +22,9 @@ RETRIEVE all records
 SET books_index to 0
 SET genre_found to FALSE
 WHILE (books_index < length(books))
-    RETRIEVE b_id, title, author, pg_num, genre
+    RETRIEVE b_id, title, author, pg_count, genre
     IF genre is user_genre
-        DISPLAY B_id, Title, Author, pg_num, genre
+        DISPLAY B_id, Title, Author, pg_count, genre
         SET genre_found to TRUE    
     SET book_index to book_index + 1
 
@@ -36,7 +36,7 @@ IF genre_found is FALSE
 2. Sort by avg_rating to get top 10
 //selection sort, because the way it works I will be able to stop when I found the top 10 
 
-RETRIEVE b_id, title, author, avg_rating, pg_num, genre
+RETRIEVE b_id, title, author, avg_rating, pg_count, genre
 SET firstUnsorted to 0 
 WHILE (firstUnsorted <= 9 AND firstUnsorted<length)
 	SET indexOfBiggest to firstUnsorted
@@ -60,7 +60,7 @@ DISPLAY book_id, title, author, avg_rating, genre, (page_nb/speed) AS books_genr
 
 WRITE "How many days do you have available to read your next book?"
 READ timeframe 
-WRITE "You can read the following books from the list above in the given timeframe:"
+WRITE "You can read the following books from the top 10 list above in the given timeframe:"
 
 RETRIEVE records in books_genre
 SET index to 0 
@@ -91,8 +91,8 @@ IF found is FALSE
 				WHILE (index < length(books))
 //this part will be faster in python using a function: argue this on website 
 //also this dataframe of selected genres will be saved in python so we don't have to run the filtering again 	
-					IF genre is user_genre AND timeframe <= (pg_num/speed)
-						DISPLAY B_id, Title, Author, avg_rating, (pg_num/speed)
+					IF genre is user_genre AND timeframe <= (pg_count/speed)
+						DISPLAY B_id, Title, Author, avg_rating, (pg_count/speed)
 						SET genre_found to TRUE
 						SET time to TRUE     
 					SET book_index to book_index + 1
