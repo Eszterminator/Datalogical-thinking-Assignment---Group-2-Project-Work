@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dataset — Goodreads Reading Planner</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <h1>Goodreads Reading Planner</h1>
+            <p class="subtitle">Datalogical Thinking — Group Project</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Overview</a></li>
+                <li><a href="dataset.html" class="active">Dataset</a></li>
+                <li><a href="algorithm.html">Algorithm</a></li>
+                <li><a href="people.html">Team & Work Division</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="content-container">
+
+        <section class="card">
+            <h2>Dataset Overview</h2> 
+            <p>
+                Our project utilizes a structured dataset extracted from Goodreads, sourced via Kaggle. 
+                The dataset provides comprehensive metadata on various popular literary works, giving our algorithm 
+                sufficient data points to evaluate reader satisfaction, categorization, and physical volume.
+            </p>
+            <p>
+                To satisfy the core project constraints, our curated dataset maintains over 50 well-formed entries, 
+                stored in tabular <code>.csv</code> format for direct algorithmic reading.
+            </p>
+        </section>
+
+        <section class="card">
+            <h2>Data Structure & Attributes</h2>
+            <p>The primary columns retained for the recommendation and pacing algorithm include:</p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Attribute</th>
+                            <th>Data Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>title</code></td>
+                            <td>String</td>
+                            <td>The full title of the publication.</td>
+                        </tr>
+                        <tr>
+                            <td><code>authors</code></td>
+                            <td>String</td>
+                            <td>The primary author(s) credited for the work.</td>
+                        </tr>
+                        <tr>
+                            <td><code>genre</code></td>
+                            <td>String</td>
+                            <td>The categorical classification of the book.</td>
+                        </tr>
+                        <tr>
+                            <td><code>average_rating</code></td>
+                            <td>Float</td>
+                            <td>Average reader score on a scale from 1.0 to 5.0.</td>
+                        </tr>
+                        <tr>
+                            <td><code>num_pages</code></td>
+                            <td>Integer</td>
+                            <td>Total page count used for reading pace estimation.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Genre Distribution & Selection</h2>
+            <p>
+                When inspecting the original dataset, we audited the distribution of records across categories to ensure 
+                our algorithm could return a reliable list of top recommendations:
+            </p>
+            <ul>
+                <li><strong>Classics:</strong> 76 records</li>
+                <li><strong>Fiction:</strong> 37 records</li>
+                <li><strong>Fantasy:</strong> 32 records</li>
+                <li><strong>Young Adult:</strong> 18 records</li>
+                <li><strong>Childrens:</strong> 11 records</li>
+                <li><strong>Historical:</strong> 6 records</li>
+                <li><strong>Science Fiction:</strong> 4 records</li>
+                <li><strong>Cultural:</strong> 1 record</li>
+            </ul>
+            <p>
+                Based on these counts, we decided to focus primarily on <strong>Classics, Fiction, Fantasy, and Young Adult</strong>, 
+                as they provided sufficient entries to support a robust "Top 10" recommendation query.
+            </p>
+        </section>
+
+        <section class="card">
+            <h2>Design Justifications, Cleaning & Limitations</h2>
+            <p>
+                <strong>Format Selection:</strong> We chose CSV due to its widespread compatibility, lightweight nature, 
+                and seamless parsing capabilities in spreadsheet software and automated programming scripts.
+            </p>
+            <p>
+                <strong>Data Modeling Choices:</strong> Rather than performing manual cross-table joins across separate rating files, 
+                we selected an aggregated record model featuring <code>average_rating</code> directly. This keeps the algorithm concise, 
+                modular, and focused on user-driven filtering.
+            </p>
+            <p>
+                <strong>Data Cleaning Example:</strong> We corrected inconsistencies discovered during our data audit. For instance, 
+                <em>Crime and Punishment</em> was originally classified under the single-entry label "Cultural" and was reclassified 
+                into "Classics" to ensure correct categorization.
+            </p>
+            <p>
+                <strong>Dataset Limitations:</strong> As this curated sample is relatively compact, niche genres remain underrepresented. 
+                In future developments, expanding the dataset would increase recommendation variety and improve coverage across smaller categories.
+            </p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>MSc in Information Science: Digital Environments | University of Borås</p>
+    </footer>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
