@@ -198,3 +198,32 @@ footer {
   font-size: 16px;
   border-top: 1px solid rgba(43, 23, 0, 0.2);
 }
+
+/* --- Figure & Caption Styling --- */
+.featured-figure {
+  float: right;
+  margin: 0 0 1.2rem 1.8rem;
+  max-width: 360px;
+  width: 42%;
+  text-align: center;
+}
+
+.featured-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+.featured-figure figcaption {
+  font-size: 14px;
+  font-style: italic;
+  color: #554433;
+  margin-top: 6px;
+}
+
+.featured-figure figcaption a {
+  color: #2B1700;
+  text-decoration: underline;
+}
