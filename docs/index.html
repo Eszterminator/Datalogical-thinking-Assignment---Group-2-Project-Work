@@ -9,10 +9,8 @@
 <body>
 
     <header>
-        <div class="header-container">
-            <h1>Goodreads Reading Planner</h1>
-            <p class="subtitle">Datalogical Thinking — Group Project</p>
-        </div>
+        <h1>Goodreads Reading Planner</h1>
+        <p class="subtitle">Datalogical Thinking — Group Project</p>
         <nav>
             <ul>
                 <li><a href="index.html" class="active">Overview</a></li>
@@ -23,56 +21,43 @@
         </nav>
     </header>
 
-    <main class="content-container">
+    <article>
+        <h2>About The Project</h2>
+        
+        <img id="picright" src="img/booksandplant.jpg" alt="Books and plant">
 
-        <section class="card">
-            <h2>About The Project</h2>
-            <div class="overview-grid">
-                <div class="overview-text">
-                    <p>
-                        Finding the right book to read next can often be overwhelming given the vast amount of literature available online. 
-                        This project addresses that challenge by combining curated reader feedback with personalized pacing metrics.
-                    </p>
-                    <p>
-                        Using a structured dataset of popular books from Goodreads, our goal is to help users discover highly rated titles 
-                        within their preferred genre while estimating the time commitment required based on their personal daily reading pace.
-                    </p>
-                </div>
-                <div class="overview-image">
-                    <img src="img/booksandplant.jpg" alt="Books and plant illustration" class="feature-img">
-                </div>
-            </div>
-        </section>
+        <p>
+            Finding the right book to read next can often be overwhelming given the vast amount of literature available online. 
+            This project addresses that challenge by combining curated reader feedback with personalized pacing metrics.
+        </p>
 
-        <section class="card">
-            <h2>Our Core Approach</h2>
-            
-            <div class="approach-item">
-                <h3>1. Curated Data</h3>
-                <p>
-                    We extract and clean metadata from Goodreads, including titles, authors, genres, average ratings, and page counts, 
-                    ensuring a clean, structured foundation for algorithmic processing.
-                </p>
-            </div>
+        <p>
+            Using a structured dataset of popular books from Goodreads, our goal is to help users discover highly rated titles 
+            within their preferred genre while estimating the time commitment required based on their personal daily reading pace.
+        </p>
 
-            <div class="approach-item">
-                <h3>2. Algorithmic Recommendations</h3>
-                <p>
-                    Our algorithm filters titles based on reader preferences and user constraints, ranking books by rating and calculating 
-                    realistic reading completion timelines.
-                </p>
-            </div>
+        <div style="clear: both;"></div>
 
-            <div class="approach-item">
-                <h3>3. Transparent Documentation</h3>
-                <p>
-                    We document the complete pipeline — from Kaggle data wrangling to pseudocode logic and responsive web presentation — 
-                    demonstrating core principles of datalogical thinking.
-                </p>
-            </div>
-        </section>
+        <h2>Our Core Approach</h2>
+        
+        <h3>1. Curated Data</h3>
+        <p>
+            We extract and clean metadata from Goodreads, including titles, authors, genres, average ratings, and page counts, 
+            ensuring a clean, structured foundation for algorithmic processing.
+        </p>
 
-    </main>
+        <h3>2. Algorithmic Recommendations</h3>
+        <p>
+            Our algorithm filters titles based on reader preferences and user constraints, ranking books by rating and calculating 
+            realistic reading completion timelines.
+        </p>
+
+        <h3>3. Transparent Documentation</h3>
+        <p>
+            We document the complete pipeline — from Kaggle data wrangling to pseudocode logic and responsive web presentation — 
+            demonstrando core principles of datalogical thinking.
+        </p>
+    </article>
 
     <footer>
         <p>MSc in Information Science: Digital Environments | University of Borås</p>
