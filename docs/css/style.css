@@ -1,0 +1,112 @@
+/* Feel free to change me and make me your own! */
+
+body {
+  background-color: #B6C199; 
+  font-family: Garamond, serif; 
+  color: #2B1700;
+}
+
+article {
+  margin-left: 6vw; 
+  margin-right: 6vw; 
+}
+
+h1 {
+  font-size: 48px; 
+  text-align: center;
+}
+
+h2 {
+  font-size: 36px; 
+}
+
+p {
+  font-size: 20px; 
+}
+
+ul {
+  font-size: 20px; 
+  list-style-type: square; 
+}
+
+code {
+ font-family: 'Courier New', monospace; 
+}
+
+footer{
+  text-align: center; 
+}
+
+.copyright {
+  border-top: 1px solid black;
+  display: flex;
+  margin: auto;
+  padding: 10px;
+}
+
+img.copyright_logo {
+  width: 1vw;
+  margin:.15vw;
+}
+
+.course-logo {
+  width: 35vw;
+}
+
+
+
+
+
+
+
+/*from here it was not part of the template*/
+
+h3 {
+  font-size: 26px; 
+  font-style: bold;
+}
+
+ol {
+  font-size: 20px; 
+  font-style: italic;
+}
+
+.decisions {
+  width: 90%;
+  height: auto;
+  padding: 10px;
+  border: 7px solid gray;
+  margin: 0;
+  background-color: #b48b9c;
+}
+
+#picright  {
+ float: right;   
+ margin: 0 0 0 15px;
+ width: 400px;
+ height: auto;
+}
+
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.bottom-right {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#picbottom {
+  float: center;
+  margin: auto;
+  width:auto;
+  height: auto;
+  border-style: outset;
+  border-width: 5px;
+}
