@@ -2,147 +2,148 @@
 <html lang="en">
 
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Algorithm</title>
-<link rel="stylesheet" href="css/style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goodreads Reading Planner — Algorithm</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
  
 <body>
-	<header>
-		<h1>
-			Step-by-step algorithm development process 
-		</h1>	
+    <header>
+        <h1>Goodreads Reading Planner</h1>
+        <p class="subtitle">Datalogical Thinking — Group Project</p>
+        <nav>
+            <ul>
+                <li><a href="index.html">Overview</a></li>
+                <li><a href="dataset.html">Dataset</a></li>
+                <li><a href="algorithm.html" class="active">Algorithm</a></li>
+                <li><a href="people.html">Team & Work Division</a></li>
+            </ul>
+        </nav>
+    </header>
 
-		<div class="container">
-		<a href="https://www.pexels.com/photo/view-of-a-bookcase-in-a-library-27134578/ " target="_blank">
-  			<img src="img/bookshelf.jpg" alt="Closeup of shelf full of books." id="picright"/>
-  			<div class="bottom-right">
-    		<p>Photo by Wendy Wei</p>
-  			</div>
-		</a>
-		</div>
-	</header>
-	<main>
-		<article>
-			<h2>
-				Planning process: Pseudocode 
-			</h2>
-			<p>
-				The first step in our algorithm design was thinking about the problem we wanted to solve: recommending books to users based on their genre preferences and time limitations. We considered what data we would need to answer these questions:
-				<ul>
-					<li>book genre</li>
-					<li>book title</li>
-					<li>book author</li>
-					<li>average Goodreads rating of the book</li>
-					<li>unique identifier for the book to keep us right</li>
-					<li>page number</li>
-					<li>user's required genre</li>
-					<li>user's speed of reading (in a consistent measurement unit: days)</li>
-				</ul>
-				See the details of researching and finding a dataset here: <a href="dataset.html" target="_blank">Dataset</a>
-			</p>
-			<p>
-				Next, we broke the algorithm down into smaller steps, to understand the logic behind it:
-				<ol>
-					<li>Get user input for genre and speed of reading</li>
-					<li>Select all the books from the dataset that are in the user's requested genre</li>
-					<li>Sort the selected list of books by the average rating, in descending order</li>
-					<li>Add the attribute of "How many days it would take to read the book" by dividing the page number by the speed of rating</li>
-					<li>Display the top 10 books by ratings in the chosen genre with their respective user-specific reading durations</li>
-				</ol>
-			</p>
-			<p>
-				After breaking the problem down, we wrote pseudocode instructions following the steps above. 
-			</p>
-			<h3>Decisions made</h3>
-			<div class="decisions">
-			<ul font-style="italic">	
-			<li>Upon discussion, we came to the conclusion that leaving the genre question open to the user "Which genre would you like to read?", in order to be able to select at least 10 books in whatever genre they specify would require a very large dataset, that would exceed the scope of this project. Therefore, we decided to limit the genre choices to 4 (Fantasy, Fiction, Classics, Young Adult), to keep the dataset manageable.</li> 
+    <main class="content-container">
+        <article class="card">
+            <h2>Step-by-step algorithm development process</h2>
 
-			<li>The genres were selected based on the available data, filtering and counting the books under each genre category in dataset using spreadsheet software in-built functions. We picked the 4 genres that had the most books available in them, to be able to check the reliability of our top 10 selections. At this stage of the project, the algorithm can recommend books from a limited number of genres, however, we recommend for future development of the project extending the dataset and adding more options for the user.</li>
+            <div class="container" style="position: relative;">
+                <a href="https://www.pexels.com/photo/view-of-a-bookcase-in-a-library-27134578/" target="_blank">
+                    <img src="img/bookshelf.jpg" alt="Closeup of shelf full of books." id="picright"/>
+                    <div class="bottom-right">
+                        <p style="font-size: 14px; margin: 0; background-color: rgba(0,0,0,0.6); padding: 2px 6px; border-radius: 3px;">Photo by Wendy Wei</p>
+                    </div>
+                </a>
+            </div>
 
-			<li>For the sorting step described above, we opted for a selection sort algorithm, since we only needed the first 10 highest rated books. This was, we could stop the algorithm after the first 10 biggest rated books were found, making it faster and more efficient than sorting through the whole list of books, as a bubble sort algorithm would have done. 					 
-			</li></ul>
+            <h3>Planning process: Pseudocode</h3>
+            <p>
+                The first step in our algorithm design was thinking about the problem we wanted to solve: recommending books to users based on their genre preferences and time limitations. We considered what data we would need to answer these questions:
+            </p>
+            <ul>
+                <li>book genre</li>
+                <li>book title</li>
+                <li>book author</li>
+                <li>average Goodreads rating of the book</li>
+                <li>unique identifier for the book to keep us right</li>
+                <li>page number</li>
+                <li>user's required genre</li>
+                <li>user's speed of reading (in a consistent measurement unit: days)</li>
+            </ul>
+            <p>
+                See the details of researching and finding a dataset here: <a href="dataset.html">Dataset</a>
+            </p>
+            <p>
+                Next, we broke the algorithm down into smaller steps, to understand the logic behind it:
+            </p>
+            <ol>
+                <li>Get user input for genre and speed of reading</li>
+                <li>Select all the books from the dataset that are in the user's requested genre</li>
+                <li>Sort the selected list of books by the average rating, in descending order</li>
+                <li>Add the attribute of "How many days it would take to read the book" by dividing the page number by the speed of rating</li>
+                <li>Display the top 10 books by ratings in the chosen genre with their respective user-specific reading durations</li>
+            </ol>
+            <p>
+                After breaking the problem down, we wrote pseudocode instructions following the steps above. 
+            </p>
 
-			</div>
+            <h3>Decisions made</h3>
+            <div class="decisions">
+                <ul>    
+                    <li>Upon discussion, we came to the conclusion that leaving the genre question open to the user "Which genre would you like to read?", in order to be able to select at least 10 books in whatever genre they specify would require a very large dataset, that would exceed the scope of this project. Therefore, we decided to limit the genre choices to 4 (Fantasy, Fiction, Classics, Young Adult), to keep the dataset manageable.</li> 
+                    <li>The genres were selected based on the available data, filtering and counting the books under each genre category in dataset using spreadsheet software in-built functions. We picked the 4 genres that had the most books available in them, to be able to check the reliability of our top 10 selections. At this stage of the project, the algorithm can recommend books from a limited number of genres, however, we recommend for future development of the project extending the dataset and adding more options for the user.</li>
+                    <li>For the sorting step described above, we opted for a selection sort algorithm, since we only needed the first 10 highest rated books. This was, we could stop the algorithm after the first 10 biggest rated books were found, making it faster and more efficient than sorting through the whole list of books, as a bubble sort algorithm would have done.</li>
+                </ul>
+            </div>
 
-			
-			<p>At this stage, we discussed that we could further develop the algorithm, and brainstormed for some further instructions. We decided to add a timelimit element to the book recommendations:</p>
+            <p>At this stage, we discussed that we could further develop the algorithm, and brainstormed for some further instructions. We decided to add a timelimit element to the book recommendations:</p>
 
-			<ol>
-				<li>
-				 The user would be asked how much time they have available for their next book, and we would filter and display the books from the previously recommended top 10 list that fit into this timeframe.</li>
-				<li> 
-				 If none of the books could be read under the given days at the specified speed, we would display a message "None of the top 10 rated books in the specified genre can be read in the specified time, would you like to see  recommendations for lower rated books that can be read in ...(insert variable) days?".</li>
-				<li>
-				 Then, if the user inputs YES, we would filter through the full list of books in the specified genre to check which ones fit the timeframe and display them, sorted by highest rated. </li>
-				<li>
-				 If the user says NO, the algorithm would revert to the original step, of inputting a genre.
-				</li>
-			</ol>
-			
+            <ol>
+                <li>The user would be asked how much time they have available for their next book, and we would filter and display the books from the previously recommended top 10 list that fit into this timeframe.</li>
+                <li>If none of the books could be read under the given days at the specified speed, we would display a message "None of the top 10 rated books in the specified genre can be read in the specified time, would you like to see recommendations for lower rated books that can be read in ...(insert variable) days?".</li>
+                <li>Then, if the user inputs YES, we would filter through the full list of books in the specified genre to check which ones fit the timeframe and display them, sorted by highest rated.</li>
+                <li>If the user says NO, the algorithm would revert to the original step, of inputting a genre.</li>
+            </ol>
 
-			<h2>Python code</h2>
-			<p>
-				After the pseudocode instructions were completed, we decided to write our algorithm in the python programming language, so that it could be executed and tested using our actual dataset. For this step, strict syntax rules had to be followed. To check for syntax errors, we checked the code in an online python editor, before running it on our local system importing the csv dataset. 
-			<p>To work with our csv dataset, we installed and imported the pandas library, used for reading, filtering, sorting, and analyzing datasets.</p>
-			<h3>Decisions made</h3>
-			<div class="decisions">
-			<ol>
-				<li>The coding steps were closely linked with the dataset, in an iterative process: we filtered the dataset based on our algorithm needs, and we edited the code 
-					based on the dataset e.g. names of columns, availability of books in genre categories etc.</li>
-				<li>To filter the data based on genre condition, we created a new dataframe to work with</li>
-				<li>We copied this dataframe before making modifications, then added a column to show how many days each book would take to read based on the input variable speed</li>
-				<li>We decided to use the built-in pandas sorting function (.sort_values) to maximise our algorithm's efficiency. We sorted the filtered dataframe from the 
-					previous step in descending order by the average ratings, and in ascending order by length of reading time required.</li>
-			    <li>As the first recommendation, the user receives a table with the top 10 highest rated books in the selected genre, showing how many days each would take to read 
-					at their specified speed.</li>
-				<li>At this stage, the user gets prompted to input how long they have available to read, to make our recommendations more useful</li>
-				<li>We wanted to recommend top rated books, therefore, the algorithm only checks the top 10 list from above at this stage, to filter for the books that fit in the 
-					user's timeframe. To do this, we run a while loop checking each record in the top 10 table, adding those records that fit the time condition to an internal list and 
-					changing a boolean variable "found" to true. After looking through each record in the top 10 list, we check if the 
-					boolean operator for our found variable is true or false. If true, we turn the list into a dataframe and display, otherwise we let the user know that none of the 
-					top 10 rated books could be read in the given time, and ask if they would like to see lower rated recommendations.</li>
-				<li>After input validation, if the user said Yes, we repeat the above process, this time looking through the full list of books filtered for the genre input from 
-					above, creating a list that can be turned into a dataframe to display. If no books meet the condition, we let the user know and ask if they would like to pick 
-					another genre.For this step, we used the sorted filtered dataframe of the books, so that recommendations are always displayed in descending order by their ratings and ascending 
-					order by the time they take to read
-				</li>
-				<li>This is when we realised we should place the full algorithm into a while loop, so that users can change to another genre at the end, and find another recommendation
-					 they can read in their available time. Or maybe they would just like to try again. Therefore, we created a boolean variable run_again, that only turns false, and ends the repetitions if the user answers No</li>
-			</ol>
-			</div>
+            <div style="clear: both;"></div>
 
-			<h3>Problems and Solutions</h3>
-			<p>
-			We realised that matching our user input text to the data records in the dataset could be limited by case sensitivity. 
-			Therefore, we added validation check after every user input, using if-else and while selections. 
-			We also used the .lower() python function to make sure input is in lower case, so we don't have to write all options out e.g. "YES" OR "yes" OR "Yes"
-			Similary, we added validity checks for the number inputs, such as checking that the input of reading speed measured in days is a positive number. </p>
-			<p>
-			Currently, users are only able to end the program repeating itself at the final checkpoint. However, they might not reach that point, based on their answers, in which case the program just starts again, asking them to input another genre. We added a line "type end to exit" as a solution to this issue, upon which point there is a thank you message and the program ends.
-			</p>
-			
+            <h2>Python code</h2>
+            <p>
+                After the pseudocode instructions were completed, we decided to write our algorithm in the python programming language, so that it could be executed and tested using our actual dataset. For this step, strict syntax rules had to be followed. To check for syntax errors, we checked the code in an online python editor, before running it on our local system importing the csv dataset. 
+            </p>
+            <p>To work with our csv dataset, we installed and imported the pandas library, used for reading, filtering, sorting, and analyzing datasets.</p>
+            
+            <h3>Decisions made</h3>
+            <div class="decisions">
+                <ol>
+                    <li>The coding steps were closely linked with the dataset, in an iterative process: we filtered the dataset based on our algorithm needs, and we edited the code based on the dataset e.g. names of columns, availability of books in genre categories etc.</li>
+                    <li>To filter the data based on genre condition, we created a new dataframe to work with.</li>
+                    <li>We copied this dataframe before making modifications, then added a column to show how many days each book would take to read based on the input variable speed.</li>
+                    <li>We decided to use the built-in pandas sorting function (.sort_values) to maximise our algorithm's efficiency. We sorted the filtered dataframe from the previous step in descending order by the average ratings, and in ascending order by length of reading time required.</li>
+                    <li>As the first recommendation, the user receives a table with the top 10 highest rated books in the selected genre, showing how many days each would take to read at their specified speed.</li>
+                    <li>At this stage, the user gets prompted to input how long they have available to read, to make our recommendations more useful.</li>
+                    <li>We wanted to recommend top rated books, therefore, the algorithm only checks the top 10 list from above at this stage, to filter for the books that fit in the user's timeframe. To do this, we run a while loop checking each record in the top 10 table, adding those records that fit the time condition to an internal list and changing a boolean variable "found" to true. After looking through each record in the top 10 list, we check if the boolean operator for our found variable is true or false. If true, we turn the list into a dataframe and display, otherwise we let the user know that none of the top 10 rated books could be read in the given time, and ask if they would like to see lower rated recommendations.</li>
+                    <li>After input validation, if the user said Yes, we repeat the above process, this time looking through the full list of books filtered for the genre input from above, creating a list that can be turned into a dataframe to display. If no books meet the condition, we let the user know and ask if they would like to pick another genre. For this step, we used the sorted filtered dataframe of the books, so that recommendations are always displayed in descending order by their ratings and ascending order by the time they take to read.</li>
+                    <li>This is when we realised we should place the full algorithm into a while loop, so that users can change to another genre at the end, and find another recommendation they can read in their available time. Or maybe they would just like to try again. Therefore, we created a boolean variable run_again, that only turns false, and ends the repetitions if the user answers No.</li>
+                </ol>
+            </div>
 
-			<h2>Limitations</h2>
-			<p>
-			Writing the pseudocode, one of the main limitations was that we could not test our algorithm logic with the actual data. This was solved when we created python code that could work with our dataset using the pandas Python library.
-			</p>
-			<p>One of the main challenges, when working on the python code were the strict rules around the indentations. We encountered a case for instance, where our index incrementation fell inside an if clause, therefore leaving the while loop to run indefinitely. 
-			The debugging process was time-consuming after the initial pseudocode was transferred to python.</p>
-			<p>We recognise the limitations of our algorithm in providing book recommendations given the limited dataset used. The user is unaware of how many books the top 10 are chosen from. Upon further development, the dataset could be expanded, potentially even allowing for regular crawling of the GoodReads website to find up-to-date book data, providing much better recommendations.</p>
-		<h2>Demonstration run of the algorithm</h2>
-		<img src="img/trialrun.png" alt="Execution lines of the python code of the algorithm" id="picbottom"/>
-		</article>
-	</main>
-	<footer>
+            <h3>Problems and Solutions</h3>
+            <p>
+                We realised that matching our user input text to the data records in the dataset could be limited by case sensitivity. 
+                Therefore, we added validation check after every user input, using if-else and while selections. 
+                We also used the .lower() python function to make sure input is in lower case, so we don't have to write all options out e.g. "YES" OR "yes" OR "Yes".
+                Similarly, we added validity checks for the number inputs, such as checking that the input of reading speed measured in days is a positive number.
+            </p>
+            <p>
+                Currently, users are only able to end the program repeating itself at the final checkpoint. However, they might not reach that point, based on their answers, in which case the program just starts again, asking them to input another genre. We added a line "type end to exit" as a solution to this issue, upon which point there is a thank you message and the program ends.
+            </p>
+
+            <h2>Limitations</h2>
+            <p>
+                Writing the pseudocode, one of the main limitations was that we could not test our algorithm logic with the actual data. This was solved when we created python code that could work with our dataset using the pandas Python library.
+            </p>
+            <p>
+                One of the main challenges, when working on the python code were the strict rules around the indentations. We encountered a case for instance, where our index incrementation fell inside an if clause, therefore leaving the while loop to run indefinitely. The debugging process was time-consuming after the initial pseudocode was transferred to python.
+            </p>
+            <p>
+                We recognise the limitations of our algorithm in providing book recommendations given the limited dataset used. The user is unaware of how many books the top 10 are chosen from. Upon further development, the dataset could be expanded, potentially even allowing for regular crawling of the GoodReads website to find up-to-date book data, providing much better recommendations.
+            </p>
+
+            <h2>Demonstration run of the algorithm</h2>
+            <img src="img/trialrun.png" alt="Execution lines of the python code of the algorithm" id="picbottom"/>
+        </article>
+    </main>
+
+    <footer>
         <div class="copyright">
-                  <div><a href="https://creativecommons.org/licenses/by/4.0/legalcode" target="_blank"><img src="img/cc.svg" class="copyright_logo" alt="Creative Commons License"><img src="img/by.svg" class="copyright_logo" alt="Attribution 4.0 International"></a></div>
-        <p> MSc in Information Science: Digital Environments | University of Borås </p>
-
+            <div>
+                <a href="https://creativecommons.org/licenses/by/4.0/legalcode" target="_blank">
+                    <img src="img/cc.svg" class="copyright_logo" alt="Creative Commons License">
+                    <img src="img/by.svg" class="copyright_logo" alt="Attribution 4.0 International">
+                </a>
+            </div>
+            <p>MSc in Information Science: Digital Environments | University of Borås</p>
+        </div>
     </footer>
 </body>
 </html>
