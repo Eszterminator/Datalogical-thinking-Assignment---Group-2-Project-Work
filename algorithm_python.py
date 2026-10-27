@@ -2,7 +2,7 @@ import pandas as pd
 
 #read in the data file as dataframe 
 #need to change this to the github file when it is uploaded
-books = pd.read_csv(r"C:\Users\madar\Documents\Masters degree Boras uni\datalogical thinking\goodreads.csv")
+books = pd.read_csv("data/goodreads_cleaned.csv", sep=";")
 
 #to repeat the program, asking for another genre if they want to at the end 
 run_again = True
