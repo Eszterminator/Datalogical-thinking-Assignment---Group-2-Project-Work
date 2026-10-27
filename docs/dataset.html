@@ -57,9 +57,9 @@
                             <td>The full title of the publication.</td>
                         </tr>
                         <tr>
-                            <td><code>authors</code></td>
+                            <td><code>author</code></td>
                             <td>String</td>
-                            <td>The primary author(s) credited for the work.</td>
+                            <td>The author credited for the work.</td>
                         </tr>
                         <tr>
                             <td><code>genre</code></td>
@@ -103,8 +103,8 @@
             </p>
         </section>
 
-        <section class="card">
-            <h2>Design Justifications, Cleaning & Limitations</h2>
+       <section class="card">
+            <h2>Design Justifications & Cleaning</h2>
             <p>
                 <strong>Format Selection:</strong> We chose CSV due to its widespread compatibility, lightweight nature, 
                 and seamless parsing capabilities in spreadsheet software and automated programming scripts.
@@ -119,13 +119,28 @@
                 <em>Crime and Punishment</em> was originally classified under the single-entry label "Cultural" and was reclassified 
                 into "Classics" to ensure correct categorization.
             </p>
+<<<<<<< HEAD
+=======
             <p>
                 <strong>Dataset Preparation:</strong> We prepared a cleaned CSV file containing the columns needed for our recommendation algorithm: book title, author, rating, rating count, page count, publication year, and genre. We selected four genres for the project: Fantasy, Classics, Fiction, and Young Adult. The prepared file is stored in the project's GitHub repository for use by the Python algorithm.
             </p>
-            <p>
-                <strong>Dataset Limitations:</strong> As this curated sample is relatively compact, niche genres remain underrepresented. 
-                In future developments, expanding the dataset would increase recommendation variety and improve coverage across smaller categories.
-            </p>
+            
+>>>>>>> 5d4cec155d9800054f3465591e5de60370f29975
+        </section>
+
+        <section class="card">
+            <h2>Dataset Limitations & Future Work</h2>
+            <ul>
+                <li>
+                    <strong>Single Genre Classification:</strong> Each book in our current dataset is assigned to a single genre, whereas literary works often span multiple categories. Creating a relational database where several genres could be linked to each title would be a natural next step to improve recommendations.
+                </li>
+                <li>
+                    <strong>Dataset Age & Static Ratings:</strong> The dataset originates from historical Kaggle records uploaded several years ago. Since reader reviews on Goodreads fluctuate over time, the current live ratings will differ from our static figures.
+                </li>
+                <li>
+                    <strong>Sample Size & Catalog Representation:</strong> Our curated dataset represents a focused sample rather than the full Goodreads catalog. Consequently, the user is unaware whether a top-rated recommendation was selected from a pool of 15 titles or 500 titles within that category.
+                </li>
+            </ul>
         </section>
 
     </main>
