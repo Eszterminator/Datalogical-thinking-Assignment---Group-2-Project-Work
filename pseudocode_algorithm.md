@@ -19,22 +19,7 @@ WHILE (runagain is TRUE)
 		EXIT PROGRAM
 	ENDIF
 
- //load the csv dataset into a books array 
- //filter the books with the right genre into a new array 
-
-	LOAD goodreads.csv as books 
-	RETRIEVE all records in books
-	CREATE empty array GenreFiltered
-	SET index to 0
-	
-	WHILE (index < length(books))
-		IF (books[index].genre is user_genre)
-			ADD books[index] to GenreFiltered 
-		ENDIF
-		SET index to index + 1
-	ENDWHILE
-
- //get user input about time available and speed of reading
+//get user input about time available and speed of reading
 
 	WRITE "How many days do you have available to read your next book?"
 	READ timeframe 
@@ -47,42 +32,50 @@ WHILE (runagain is TRUE)
         GET speed
 	ENDWHILE
 
- //filter the selected genre array for the books that fit the timeframe
-	CREATE empty array TimeFiltered
-	SET index to 0 
-	WHILE (index < length(GenreFiltered)) 
-		SET days to (GenreFiltered[index].num_pages/speed) 
-			IF (days <= timeframe) 
-				SET GenreFiltered[index].days to days
-				ADD GenreFiltered[index] to TimeFiltered
-			ENDIF
-		SET index to index+1 
-	ENDWHILE
+
+ //load the csv dataset into a books array 
+ //filter the books for genre and time constraints into a new array 
+
+	LOAD goodreads.csv as books 
+	RETRIEVE all records in books
+	CREATE empty array Filtered
+	SET index to 0
 	
-	IF (TimeFiltered is EMPTY)
+	WHILE (index < length(books))
+		IF (books[index].genre is user_genre)
+			SET days to (books[index].num_pages/speed) 
+			IF (days <= timeframe) 
+				SET books[index].days to days
+				ADD books[index] to Filtered
+			ENDIF
+		ENDIF
+		SET index to index + 1
+	ENDWHILE
+
+	IF (Filtered is EMPTY)
 		WRITE "None of the”, user_genre, “books could be read within the specified time limit at the specified speed.”
 	ELSE
      //find the highest rated 10 of them to display final recommendations 
-		WRITE "Please see the top 10 rated ", user_genre, "books that can be read in the given time limit and the number of days they would take to read: ”
+		WRITE "Please see the top 10 rated ", user_genre, "books that can be read in ",timeframe, " days and the number of days they would each take to read: ”
 		SET firstUnsorted to 0
-		WHILE (firstUnsorted<=9 AND firstUnsorted < length(TimeFiltered)-1)
+		WHILE (firstUnsorted<=9 AND firstUnsorted < length(Filtered)-1)
 			SET indexOfBiggest to firstUnsorted
 			SET index to firstUnsorted + 1 
-			WHILE (index <= length(TimeFiltered) - 1)
-				IF (TimeFiltered[index].average_rating > TimeFiltered[indexOfBiggest].average_rating)
+			WHILE (index <= length(Filtered) - 1)
+				IF (Filtered[index].average_rating > Filtered[indexOfBiggest].average_rating)
 					SET indexOfBiggest to index
 				SET index to index + 1 		
 			ENDWHILE
-			SET tempItem to TimeFiltered[firstUnsorted]
-			SET TimeFiltered[firstUnsorted] to TimeFiltered[indexofBiggest]
-			SET TimeFiltered[indexOfBiggest] to tempItem
+			SET tempItem to Filtered[firstUnsorted]
+			SET Filtered[firstUnsorted] to Filtered[indexofBiggest]
+			SET Filtered[indexOfBiggest] to tempItem
 			SET firstUnsorted to firstUnsorted + 1 	
 		ENDWHILE
 	 //and display the top 10 
 	 	SET index to 0
-		WHILE (index < length(TimeFiltered) AND index <= 9)
-			WRITE Time_Filtered[index], ENDLINE
-			Index = index + 1
+		WHILE (index < length(Filtered) AND index <= 9)
+			WRITE Filtered[index], ENDLINE
+			index = index + 1
 		ENDWHILE	
 	ENDIF 
 	
