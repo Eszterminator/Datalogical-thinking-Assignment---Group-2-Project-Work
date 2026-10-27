@@ -16,6 +16,7 @@ WHILE (runagain is TRUE)
 	ENDWHILE
 
 	IF (user_genre is "End")
+		SET runagain to FALSE
 		EXIT PROGRAM
 	ENDIF
 
@@ -80,7 +81,7 @@ WHILE (runagain is TRUE)
 	ENDIF 
 	
  //check whether user wants to try another genre
-	WRITE “Would you like to pick another genre? Write yes or no”
+	WRITE “Would you like to try again? Write yes or no”
 		GET user_runagain 
 	WHILE (user_runagain is not "yes" AND user_runagain is not "no")
 		WRITE "Invalid input, please write yes or no" 
