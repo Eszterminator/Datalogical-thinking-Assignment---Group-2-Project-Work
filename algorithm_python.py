@@ -2,9 +2,13 @@ import pandas as pd
 
 books = pd.read_csv("data/goodreads_cleaned_fixed.csv")
 
+books["genre"] = books["genre"].fillna("").str.lower().str.strip()
+books["page_count"] = pd.to_numeric(books["page_count"], errors="coerce")
+books["average_rating"] = pd.to_numeric(books["average_rating"], errors="coerce")
+
 run_again = True
 
-while(run_again):
+while run_again:
 
  print("Pick one of the following genres you would like to read: Fantasy, Fiction, Young Adult, Classics. Write End to exit")
  user_genre = input().lower().strip()
@@ -29,7 +33,7 @@ while(run_again):
   timeframe = input().strip()
  timeframe=int(timeframe)
  
- filtered = books[books["genre"].str.lower().str.strip() == user_genre.lower().strip()].copy()
+ filtered = filtered = books[(books["genre"] == user_genre) & (books["page_count"] > 0) & (books["average_rating"].notna())].copy()
  
  filtered["days"] = filtered["page_count"]/speed
  
@@ -37,7 +41,7 @@ while(run_again):
  
  
  if filtered.empty:
-  print ("None of the ",user_genre,"books could be read in ",timeframe,"days at ",speed,"pages per day")
+  print print(f"No {user_genre} books match your reading time limit " f"of {timeframe} days at {speed} pages per day.")
  else:  
   sorted_books = filtered.sort_values(by=["average_rating", "days"], ascending=[False, True])
   top_10 = sorted_books.head(10).copy()
