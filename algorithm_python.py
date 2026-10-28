@@ -4,28 +4,27 @@ books = pd.read_csv("data/goodreads_cleaned_fixed.csv")
 print(books.columns.tolist())
 
 run_again = True
-genres = ["Fantasy", "Fiction", "Classics", "Young Adult"]
 
 while(run_again):
 
  print("Pick one of the following genres you would like to read: Fantasy, Fiction, Young Adult, Classics. Write End to exit")
- user_genre = input()
- while user_genre not in genres and user_genre != "End":
+ user_genre = input().lower().strip()
+ while user_genre != "fantasy" and user_genre!= "fiction" and user_genre != "young adult" and user_genre != "classics" and user_genre != "end":
   print("Invalid input, please try again. Please type Fantasy, Classics, Fiction, Young Adult or write End to exit.")  
-  user_genre = input()
+  user_genre = input().lower().strip()
     
- if user_genre=="End":
+ if user_genre=="end":
   print("Thank you for trying our programme!")
   run_again = False
   break
  
- speed = input("How many pages a day do you read?")
+ speed = input("How many pages a day do you read?").strip()
  while not speed.isdigit() or int(speed) <= 0:
    print("Enter a positive number please:")
    speed = input().strip()
  speed=int(speed)
  
- timeframe = input("How many days do you have available to read your next book?")
+ timeframe = input("How many days do you have available to read your next book?").strip()
  while not timeframe.isdigit() or int(timeframe) <= 0:
   print("Enter a positive number please:")  
   timeframe = input().strip()
@@ -41,11 +40,11 @@ while(run_again):
  if filtered.empty:
   print ("None of the ",user_genre,"books could be read in ",timeframe,"days at ",speed,"pages per day")
  else:  
-  sorted_books = filtered.sort_values(by=["rating", "days"], ascending=[False, True])
+  sorted_books = filtered.sort_values(by=["average_rating", "days"], ascending=[False, True])
   top_10 = sorted_books.head(10).copy()
   top_10.insert(0, "Rank", range(1, len(top_10) + 1))
   print("The top 10 rated",user_genre,"books, and the number of days they would take to read at",speed,"pages per day:")
-  print(top_10[["Rank","name", "author", "rating", "rating_count", "year", "days"]].to_string(index=False))
+  print(top_10[["Rank","title", "author", "year", "average_rating", "days"]].to_string(index=False))
  
  
  print("Would you like to try again? Write yes or no")
