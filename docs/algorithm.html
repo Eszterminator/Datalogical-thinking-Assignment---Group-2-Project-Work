@@ -155,8 +155,8 @@
                 aligned.</p> 
             <p>Furthermore, we applied data preprocessing, cleaning, and string normalization to ensure data consistency and avoid errors. We checked for missing values and wrong data types in the dataset, converted all string values 
                 in the genres column and user inputs to lower case, and stripped them of potential unnecessary white spaces to ensure consistent formatting: </p>
-            <code>books["genre"] = books["genre"].fillna("").str.lower().str.strip()</code>
-            <code>books["page_count"] = pd.to_numeric(books["page_count"], errors="coerce"</code> 
+            <p><code>books["genre"] = books["genre"].fillna("").str.lower().str.strip()</code></p>
+            <p><code>books["page_count"] = pd.to_numeric(books["page_count"], errors="coerce"</code></p> 
             
             <h3>Demonstration run of the algorithm</h3>
             <img src="" alt="Execution lines of the python code of the algorithm" id="picbottom"/>
