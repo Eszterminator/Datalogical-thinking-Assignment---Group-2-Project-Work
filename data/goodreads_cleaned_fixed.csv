@@ -1,4 +1,4 @@
-book_id,name,author,rating,rating_count,page_count,year,genres
+book_id,title,author,average_rating,rating_count,page_count,year,genres
 1,"The Hunger Games (The Hunger Games, #1)",Suzanne Collins,4.33,6223460,374,2008,Young Adult
 2,"Harry Potter and the Order of the Phoenix (Harry Potter, #5)",J.K. Rowling,4.5,2429708,870,2004,Fantasy
 3,To Kill a Mockingbird,Harper Lee,4.28,4377280,324,2006,Classics
