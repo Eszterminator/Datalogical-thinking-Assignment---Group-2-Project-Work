@@ -46,7 +46,7 @@ while run_again:
   sorted_books = filtered.sort_values(by=["average_rating", "days"], ascending=[False, True])
   top_10 = sorted_books.head(10).copy()
   top_10.insert(0, "Rank", range(1, len(top_10) + 1))
-  print("The top 10 rated",user_genre,"books, and the number of days they would take to read at",speed,"pages per day:")
+  print("The top-rated",user_genre,"books, and the number of days they would take to read at",speed,"pages per day:")
   print(top_10[["Rank", "title", "author", "average_rating", "page_count", "year", "days"]].to_string(index=False))
  
  
@@ -60,7 +60,3 @@ while run_again:
  if user_runagain=="no":
   run_again=False
   print("Thank you for using our programme!")
-
-
-
-
