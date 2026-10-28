@@ -33,7 +33,7 @@ while run_again:
   timeframe = input().strip()
  timeframe=int(timeframe)
  
- filtered = filtered = books[(books["genre"] == user_genre) & (books["page_count"] > 0) & (books["average_rating"].notna())].copy()
+ filtered = books[(books["genre"] == user_genre) & (books["page_count"] > 0) & (books["average_rating"].notna())].copy()
  
  filtered["days"] = filtered["page_count"]/speed
  
@@ -41,7 +41,7 @@ while run_again:
  
  
  if filtered.empty:
-  print print(f"No {user_genre} books match your reading time limit " f"of {timeframe} days at {speed} pages per day.")
+  print(f"No {user_genre} books match your reading time limit " f"of {timeframe} days at {speed} pages per day.")
  else:  
   sorted_books = filtered.sort_values(by=["average_rating", "days"], ascending=[False, True])
   top_10 = sorted_books.head(10).copy()
