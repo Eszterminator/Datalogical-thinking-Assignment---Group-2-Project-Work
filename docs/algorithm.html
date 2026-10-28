@@ -41,19 +41,20 @@
                 time limitations. We considered what data we would need to answer these questions, and looked for the connections between the data and the problem:
             </p>
             <ul>
-                <li>Book genre: to select the books in the user’s desired genre</li>
-                <li>Book title and author: to help the user identify the books we are recommending</li>
-                <li>Average Goodreads rating: to find the highest rated books to recommend</li>
                 <li>Book id: to uniquely identify and distinguish the records</li>
+                <li>Book genre: to select the books in the user’s desired genre</li>
+                <li>Book title, author, year of publication: to help the user identify the books we are recommending</li>
+                <li>Average Goodreads rating: to find the highest rated books to recommend</li>
+                <li>Ratings count: to check the reliability of the averages</li>
                 <li>Page number: to calculate how long reading each book would take</li>
                 <li>User's required genre, speed of reading, timeframe: to offer personalised recommendations</li>
-                <li>user's speed of reading</li>
             </ul>
             <p>
-                See the details of researching and finding a dataset here: <a href="dataset.html">Dataset</a>
+                See the details of researching and cleaning the dataset here: <a href="dataset.html">Dataset</a>
             </p>
 
-            <p>We found our existing data insufficient to solve our problem, as we were missing information about the user’s required genre, reading speed, and time limitations. We would request these inputs from the user in the algorithm.</p>
+            <p>We found our existing data insufficient to solve our problem, as we were missing information about the user’s required genre, reading speed, 
+                and time limitations. We would request these inputs from the user in the algorithm.</p>
     
             <h3>Divide and Conquer</h3>
             <p>Next, we broke the problem down into smaller steps, to understand the logic behind the algorithm needed:</p>
@@ -66,7 +67,10 @@
                 <li>Display the recommendations: the top 10 rated books (or fewer, if not available), that can be read under the time given at the speed given - with their respective reading durations</li>
             </ol>
             <p>Thus, we identified what the solution would look like, the data needed to reach it, and the steps to take to get there.</p>
-            <p>Upon discussion, we came to the conclusion that leaving the genre question open ("Which genre would you like to read?") would require a very large dataset, exceeding the scope of this project. Therefore, we decided to limit the genre choices to 4 (Fantasy, Fiction, Classics, Young Adult) at this stage, to keep the dataset manageable. We picked the genres from the dataset that had the most books available in them, to be able to check the reliability of our top 10 sorting algorithm.</p>
+            <p>Upon discussion, we came to the conclusion that leaving the genre question open ("Which genre would you like to read?") would require a very large dataset, 
+                exceeding the scope of this project. Therefore, we decided to limit the genre choices to 4 (Fantasy, Fiction, Classics, Young Adult) at this stage, 
+                to keep the dataset manageable. We picked the genres from the dataset that had the most books available in them, to be able to check the reliability 
+                of our top 10 sorting algorithm.</p>
             
 
             <h2>Pseudocode</h2>
@@ -75,30 +79,43 @@
             <div class="decisions">
                 <p style="font-weight: bold; text-align: center;">Decisions</p>
                 <ul>    
-                    <li>To process the 2D data in the dataset, we opted for arrays. We wrote a searching algorithm going through the books in the dataset, adding the ones that fulfilled the genre and the timeframe conditions to a new array. At this stage, we also added a new attribute to the selected records: days they take to read (variable days), calculated by dividing the page numbers by the user’s speed of reading (measured in pages per day).</li>
-                    <li>For the sorting of the selected books by average rating in descending order, we opted for a selection sort algorithm, since we only needed the first 10 highest rated books. This way, we could stop the algorithm after the first 10 biggest rated books were found, avoiding unnecessary sorting, and making it faster and more efficient than sorting through the whole list.</li>
-                    <li>Originally, we wrote instructions for each step as outlined above, however, we later optimised the algorithm by uniting steps 2-4 into a single WHILE loop. Instead of checking all the books for the genre condition, copying the selection into an array, then checking the books in the new array for the time condition, we only run through the books once, checking each for genre and time, adding the ones that meet both conditions to a new array. Thus, we save time and memory space.</li>
+                    <li>To process the 2D data in the dataset, we opted for arrays. We wrote a searching algorithm going through the books in the dataset, 
+                        adding the ones that fulfilled the genre and the timeframe conditions to a new array. At this stage, we also added a new attribute variable to the selected 
+                        records: days they take to read, calculated by dividing the page numbers by the user’s speed of reading (measured in pages per day).</li>
+                    <li>For the sorting of the selected books by average rating in descending order, we opted for a selection sort algorithm, since we only needed 
+                        the first 10 highest rated books. This way, we could stop the algorithm after the first 10 biggest rated books were found, 
+                        avoiding unnecessary sorting, and making it faster and more efficient than sorting through the whole list.</li>
+                    <li>Originally, we wrote instructions for each step as outlined above, however, we later optimised the algorithm by uniting steps 2-4 into a single 
+                        WHILE loop. Instead of checking all the books for the genre condition, copying the selection into an array, then checking the books in the 
+                        new array for the time condition, we only run through the books once, checking each for genre and time, adding the ones that meet both 
+                        conditions to a new array. Thus, we save time and memory space.</li>
                 </ul>
             </div>
 
-            <p>The decisions we made throughout the process were led by the goal of finding the easiest and fastest way to solve the problem. While memory capacity and speed of computing might not be an issue at the current size of the project, if the dataset were to be expanded, such decisions could make a difference.</p>
+            <p>Our decisions throughout the process were guided by a focus on efficiency and simplicity. 
+                While memory capacity and speed of computing might not be an issue at the current size of the project, if the dataset were to be expanded, 
+                such decisions could make a significant difference.</p>
 
             <h3>Testing and Optimising</h3>
-            <p>We walked through the steps of the algorithm many times in a desk checking process (Dale & Lewis, 2019) to check all possible outcomes and logical steps. We revised and re-sequenced some parts, correcting nesting logical fallacies (infinite loops) and solving some of the identified issues and special cases as seen below:</p>            
+            <p>We walked through the steps of the algorithm many times following the desk checking process (Dale & Lewis, 2019) to check all possible outcomes and 
+                logical steps. We revised and re-sequenced some parts, correcting nesting logical fallacies (infinite loops) and solving some of the 
+                identified issues and special cases as seen below:</p>            
 
 
              <div class="table-wrapper">
                 <table>
                     <thead>
                         <tr>
-                            <th>Problems</th>
+                            <th>Issues</th>
                             <th>Solutions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>What if the user enters an invalid input?</td>
-                            <td>These could be typos, wrong datatypes, negative values, trailing white spaces, uppercase/lowercase that cannot be matched with the dataset values etc. To solve this, we added an event controlled loop as a validation step, ensuring that the user repeatedly enters values until a valid input is reached.</td>
+                            <td>These could be typos, wrong datatypes, negative values, trailing white spaces, case-sensitivity issues when matching with dataset values. 
+                                To account for case-sensitivity in matching up values, we converted user inputs and genre data values to lower case. We also ran an event 
+                                controlled loop to check for invalid user input.</td>
                         </tr>
                         <tr>
                             <td>What if none of the books can be read in the timeframe?</td>
@@ -125,11 +142,17 @@
                 
             
             <h3>Dataset Normalization and Analysis</h3>
-            <p>To work with our csv dataset, we installed and imported the pandas library, used for reading, filtering, sorting, and analyzing datasets.</p>
-            <p>Although the whole algorithm development followed an iterative process (changing the dataset according to the algorithm's needs and contructing the algorithm based on the data), paying careful attention to the relationship between the two became especially important in the Python coding step. 
+            <p>To work with our csv dataset, we installed and imported the pandas library, used for reading, filtering, sorting, and analyzing datasets. 
+                Implementing built-in pandas sorting and filtering operations streamlined the code and eliminated the need to write out the code for 
+                the searching, filtering and sorting steps seen in the pseudocode. However, we decided to keep the detailed pseudocode version of the algorithm to refer 
+                back to the logic behind the built-in pandas operations.</p>
+            <p>Although the whole algorithm development followed an iterative process (changing the dataset according to the algorithm's needs and contructing the 
+                algorithm based on the data), paying careful attention to the relationship between the two became especially important in the Python coding step. 
                 To match values correctly and allow for filtering, we made sure the dataset column names and data types aligned.</p> 
-            <p>Furthermore, we used string normalization, converting all string values in the genres column and user inputs to lower case, and stripping them of potential unnecessary white spaces to ensure consistent formatting:</p>
+            <p>Furthermore, we used string normalization, converting all string values in the genres column and user inputs to lower case, and stripping them of potential 
+                unnecessary white spaces to ensure consistent formatting:</p>
             <code>filtered = books[books["genres"].str.lower().str.strip() == user_genre.lower().strip()]</code> 
+            
             <h3>Demonstration run of the algorithm</h3>
             <img src="" alt="Execution lines of the python code of the algorithm" id="picbottom"/>
 
@@ -137,22 +160,17 @@
 
 
             <h2>Maintenance phase: Limitations and Future Recommendations</h2>
-            <p>We recognise the limitations of our algorithm in providing book recommendations given the limited dataset used. At this stage of the project, the algorithm can recommend books from a limited number of genres. Furthermore, the user is unaware of how many books the top 10 are chosen from. For future directions, we recommend extending the dataset,  improving the user recommendations. We also recommend regularly updating the dataset to include new book releases and updated user review scores.</p>
+            <p>We recognise the limitations of our algorithm in providing book recommendations given the limited dataset used. At this stage of the project, 
+                the algorithm can only recommend books from a limited number of genres. For future directions, we recommend extending and regularly updating the dataset to 
+                include new book releases and updated user review scores. Future versions could also include links to the Goodreads page of each recommended book to improve 
+                the user experience. </p>
 
             
         </article>
     </main>
 
     <footer>
-        <div class="copyright">
-            <div>
-                <a href="https://creativecommons.org/licenses/by/4.0/legalcode" target="_blank">
-                    <img src="img/cc.svg" class="copyright_logo" alt="Creative Commons License">
-                    <img src="img/by.svg" class="copyright_logo" alt="Attribution 4.0 International">
-                </a>
-            </div>
             <p>MSc in Information Science: Digital Environments | University of Borås</p>
-        </div>
     </footer>
 </body>
 </html>
