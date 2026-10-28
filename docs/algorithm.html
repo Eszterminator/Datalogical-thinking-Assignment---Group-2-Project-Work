@@ -119,7 +119,9 @@
                         </tr>
                         <tr>
                             <td>What if none of the books can be read in the timeframe?</td>
-                            <td>We offer the user the option to try again, where they can change the speed and timeframe inputs, or opt for a different genre. To achieve this, we placed the whole algorithm inside a while loop based on a boolean operator. The user is asked at the end if they want to try again, where operator is changed to FALSE if they answer “No”. The user is also offered a chance to end the program by inputting “End” to the first prompt.</td>
+                            <td>We offer the user the option to try again, where they can change the speed and timeframe inputs, or opt for a different genre. 
+                                To achieve this, we placed the whole algorithm inside a while loop based on a boolean operator. 
+                                The user is also offered a chance to end the program by inputting “End” to the first prompt.</td>
                         </tr>
                         <tr>
                             <td>What if there are no books available in the selected genre?</td>
@@ -127,7 +129,9 @@
                         </tr>
                         <tr>
                             <td>What if there is nothing to sort?</td>
-                            <td>Also a result of the previously mentioned incident (no books meeting the criteria), the algorithm might be faced with an empty array to sort through. Therefore, we added our sorting step inside an IF clause that checks for this event. We also accounted for the possibility of there being fewer than 10 books to sort in the conditions of our sorting and displaying steps.</td>
+                            <td>As a consequence of the previous two incidents, the algorithm might be faced with an empty array to sort. 
+                                Therefore, we added our sorting step inside an IF clause that checks for this event. 
+                                We also accounted for the possibility of there being fewer than 10 books to sort in the conditions of our sorting and displaying steps.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -144,14 +148,15 @@
             <h3>Dataset Normalization and Analysis</h3>
             <p>To work with our csv dataset, we installed and imported the pandas library, used for reading, filtering, sorting, and analyzing datasets. 
                 Implementing built-in pandas sorting and filtering operations streamlined the code and eliminated the need to write out the code for 
-                the searching, filtering and sorting steps seen in the pseudocode. However, we decided to keep the detailed pseudocode version of the algorithm to refer 
-                back to the logic behind the built-in pandas operations.</p>
-            <p>Although the whole algorithm development followed an iterative process (changing the dataset according to the algorithm's needs and contructing the 
-                algorithm based on the data), paying careful attention to the relationship between the two became especially important in the Python coding step. 
-                To match values correctly and allow for filtering, we made sure the dataset column names and data types aligned.</p> 
-            <p>Furthermore, we used string normalization, converting all string values in the genres column and user inputs to lower case, and stripping them of potential 
-                unnecessary white spaces to ensure consistent formatting:</p>
-            <code>filtered = books[books["genre"].str.lower().str.strip() == user_genre.lower().strip()]</code> 
+                the searching, filtering and sorting steps seen in the pseudocode. However, we decided to keep the detailed pseudocode version of the algorithm in our GitHub repository, 
+                to refer back to the logic behind the built-in pandas operations.</p>
+            <p>Although the whole algorithm development and dataset preparation followed an iterative process, paying careful attention to the relationship between the two 
+                became especially important in the Python coding step. To match values correctly and allow for filtering, we made sure the dataset column names and data types 
+                aligned.</p> 
+            <p>Furthermore, we applied data preprocessing, cleaning, and string normalization to ensure data consistency and avoid errors. We checked for missing values and wrong data types in the dataset, converted all string values 
+                in the genres column and user inputs to lower case, and stripped them of potential unnecessary white spaces to ensure consistent formatting: </p>
+            <code>books["genre"] = books["genre"].fillna("").str.lower().str.strip()</code>
+            <code>books["page_count"] = pd.to_numeric(books["page_count"], errors="coerce"</code> 
             
             <h3>Demonstration run of the algorithm</h3>
             <img src="" alt="Execution lines of the python code of the algorithm" id="picbottom"/>
