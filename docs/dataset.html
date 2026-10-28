@@ -130,13 +130,20 @@
                 modular, and focused on user-driven filtering.
             </p>
             <p>
-                <strong>Dataset Preparation:</strong> We prepared a cleaned CSV file containing the columns needed for our recommendation algorithm: title, author, average rating, rating count, page count, publication year, and genre. 
-                We added a book id attribute to be able to uniquely identify the records. We selected four genres for the project: Fantasy, Classics, Fiction, and Young Adult. The prepared file is stored in the project's GitHub repository for use by the Python algorithm.
+                <strong>Dataset Preparation:</strong> We added unique book IDs from 1 to 163 to identify each record.
+                The final dataset contains 163 books and eight columns: book_id, title, author, average_rating, rating_count,
+                page_count, year, and genre. The rating_count column is retained in the dataset but is not displayed in the
+                recommendation output. The project focuses on four genres: Fantasy, Classics, Fiction, and Young Adult.
+                The prepared CSV file is stored in the project's GitHub repository for use by the Python algorithm.
             </p>
            <p>
-                <strong>Data Cleaning Examples:</strong> We corrected inconsistencies discovered during our data audit. For instance, 
-                <em>Crime and Punishment</em> was originally classified under the single-entry label "Cultural" and was reclassified 
-                into "Classics" to ensure correct categorization.
+                <strong>Data Cleaning Example:</strong> We corrected inconsistencies discovered during our data audit. For instance,
+                <em>Crime and Punishment</em> was originally classified under the single-entry label "Cultural" and was reclassified
+                into "Classics" to ensure correct categorization. We also corrected the misspelled column name "authour" to "author",
+                fixed encoding issues affecting special characters in authors' names, and standardized the column names by changing
+                "name" to "title" and "rating" to "average_rating". The file was reformatted as a comma-separated CSV file.
+                We checked for missing values, duplicate book IDs, non-positive page counts, and ratings outside the 0–5 range;
+                none were found.
             </p>
 
             
