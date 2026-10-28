@@ -45,7 +45,7 @@ while(run_again):
   top_10 = sorted_books.head(10).copy()
   top_10.insert(0, "Rank", range(1, len(top_10) + 1))
   print("The top 10 rated",user_genre,"books, and the number of days they would take to read at",speed,"pages per day:")
-  print(top_10[["Rank","title", "author", "rating", "rating_count", "year", "days"]].to_string(index=False))
+  print(top_10[["Rank","name", "author", "rating", "rating_count", "year", "days"]].to_string(index=False))
  
  
  print("Would you like to try again? Write yes or no")
