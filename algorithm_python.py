@@ -1,7 +1,6 @@
 import pandas as pd
 
 books = pd.read_csv("data/goodreads_cleaned_fixed.csv")
-print(books.columns.tolist())
 
 run_again = True
 
