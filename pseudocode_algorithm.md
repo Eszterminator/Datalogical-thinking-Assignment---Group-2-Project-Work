@@ -73,7 +73,8 @@ WHILE (runagain is TRUE)
 	 //and display the top 10 
 	 	SET index to 0
 		WHILE (index < length(Filtered) AND index <= 9)
-			WRITE Filtered[index], ENDLINE
+			SET rank to index+1
+			WRITE rank, Filtered[index], ENDLINE
 			index = index + 1
 		ENDWHILE	
 	ENDIF 
