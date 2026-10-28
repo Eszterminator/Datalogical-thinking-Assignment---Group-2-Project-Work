@@ -151,7 +151,7 @@
                 To match values correctly and allow for filtering, we made sure the dataset column names and data types aligned.</p> 
             <p>Furthermore, we used string normalization, converting all string values in the genres column and user inputs to lower case, and stripping them of potential 
                 unnecessary white spaces to ensure consistent formatting:</p>
-            <code>filtered = books[books["genres"].str.lower().str.strip() == user_genre.lower().strip()]</code> 
+            <code>filtered = books[books["genre"].str.lower().str.strip() == user_genre.lower().strip()]</code> 
             
             <h3>Demonstration run of the algorithm</h3>
             <img src="" alt="Execution lines of the python code of the algorithm" id="picbottom"/>
