@@ -37,30 +37,22 @@
             <p>
                 In our algorithm development process, we followed Polya’s steps for problem-solving, and the computer problem-solving process described by Dale & Lewis (2019).
             </p>
-            <p>First, we analysed and specified the problem we wanted to solve: recommending high-rated books to users based on their genre preferences and time limitations. We considered what data we would need to answer these questions:
+            <p>First, we analysed and specified the problem we wanted to solve: recommending high-rated books to users based on their genre preferences and 
+                time limitations. We considered what data we would need to answer these questions, and looked for the connections between the data and the problem:
             </p>
             <ul>
-                <li>book genre</li>
-                <li>book title</li>
-                <li>book author</li>
-                <li>average Goodreads ratings of the book</li>
-                <li>unique identifier for the book to keep us right</li>
-                <li>page number</li>
-                <li>user's required genre</li>
+                <li>Book genre: to select the books in the user’s desired genre</li>
+                <li>Book title and author: to help the user identify the books we are recommending</li>
+                <li>Average Goodreads rating: to find the highest rated books to recommend</li>
+                <li>Book id: to uniquely identify and distinguish the records</li>
+                <li>Page number: to calculate how long reading each book would take</li>
+                <li>User's required genre, speed of reading, timeframe: to offer personalised recommendations</li>
                 <li>user's speed of reading</li>
             </ul>
             <p>
                 See the details of researching and finding a dataset here: <a href="dataset.html">Dataset</a>
             </p>
-            <p>
-                Then, we looked for the connections between the data and the problem:
-            </p>
-            <ul>
-                <li>Genre: to select the books in the user’s desired genre</li>
-                <li>Average ratings: to find the highest rated books to recommend</li>
-                <li>Page number: to calculate how long reading each book would take</li>
-                <li>Title, Author: to help the user identify the books we are recommending</li>
-            </ul>
+
             <p>We found our existing data insufficient to solve our problem, as we were missing information about the user’s required genre, reading speed, and time limitations. We would request these inputs from the user in the algorithm.</p>
     
             <h3>Divide and Conquer</h3>
@@ -73,7 +65,7 @@
                 <li>Sort the selected list of books by the average rating, in descending order</li>
                 <li>Display the recommendations: the top 10 rated books (or fewer, if not available), that can be read under the time given at the speed given - with their respective reading durations</li>
             </ol>
-            <p>Thus, we identified what the solution will look like, the data needed to reach it, and the steps to take to get there.</p>
+            <p>Thus, we identified what the solution would look like, the data needed to reach it, and the steps to take to get there.</p>
             <p>Upon discussion, we came to the conclusion that leaving the genre question open ("Which genre would you like to read?") would require a very large dataset, exceeding the scope of this project. Therefore, we decided to limit the genre choices to 4 (Fantasy, Fiction, Classics, Young Adult) at this stage, to keep the dataset manageable. We picked the genres from the dataset that had the most books available in them, to be able to check the reliability of our top 10 sorting algorithm.</p>
             
 
@@ -81,7 +73,7 @@
             <p>After breaking the problem down into steps, we wrote pseudocode instructions following the plan.</p>
 
             <div class="decisions">
-                <p>Decisions</p>
+                <p style="font-weight: bold; text-align: center;">Decisions</p>
                 <ul>    
                     <li>To process the 2D data in the dataset, we opted for arrays. We wrote a searching algorithm going through the books in the dataset, adding the ones that fulfilled the genre and the timeframe conditions to a new array. At this stage, we also added a new attribute to the selected records: days they take to read (variable days), calculated by dividing the page numbers by the user’s speed of reading (measured in pages per day).</li>
                     <li>For the sorting of the selected books by average rating in descending order, we opted for a selection sort algorithm, since we only needed the first 10 highest rated books. This way, we could stop the algorithm after the first 10 biggest rated books were found, avoiding unnecessary sorting, and making it faster and more efficient than sorting through the whole list.</li>
