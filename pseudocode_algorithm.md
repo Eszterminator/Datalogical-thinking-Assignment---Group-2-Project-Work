@@ -6,12 +6,12 @@ WHILE (runagain is TRUE)
  //get the user genre input and validate it 
 	WRITE “Pick one of the following genres you would like to read: Fantasy, Classics, Fiction, or Young Adult. Write End to exit programme.” 
 	GET user_genre 
-	SET user_genre to TO_LOWER(user_genre)
+	SET user_genre to TO.LOWER(user_genre)
 
 	WHILE (user_genre is not "fantasy” AND user_genre is not "classics" AND user_genre is not "fiction" AND user_genre is not "young adult" AND user_genre is not "end")
 		WRITE "Invalid input, please try again. Pick a genre from Fantasy/Classics/Fiction/Young Adult or write End to exit." 
 		GET user_genre
-		SET user_genre to TO_LOWER(user_genre)
+		SET user_genre to TO.LOWER(user_genre)
 	ENDWHILE
 
 	IF (user_genre is "end")
@@ -63,6 +63,7 @@ WHILE (runagain is TRUE)
 			WHILE (index <= length(Filtered) - 1)
 				IF (Filtered[index].average_rating > Filtered[indexOfBiggest].average_rating)
 					SET indexOfBiggest to index
+				ENDIF
 				SET index to index + 1 		
 			ENDWHILE
 			SET tempItem to Filtered[firstUnsorted]
@@ -74,8 +75,8 @@ WHILE (runagain is TRUE)
 	 	SET index to 0
 		WHILE (index < length(Filtered) AND index <= 9)
 			SET rank to index+1
-			WRITE rank, Filtered[index], ENDLINE
-			index = index + 1
+			WRITE rank,". ", Filtered[index].title, Filtered[index].author, Filtered[index].average_rating, Filtered[index].page_count, Filtered[index].year, Filtered[index].days, ENDLINE
+			SET index to index + 1
 		ENDWHILE	
 	ENDIF 
 	
