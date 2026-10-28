@@ -94,22 +94,55 @@
             <h3>Testing and Optimising</h3>
             <p>We walked through the steps of the algorithm many times in a desk checking process (Dale & Lewis, 2019) to check all possible outcomes and logical steps. We revised and re-sequenced some parts, correcting nesting logical fallacies (infinite loops) and solving some of the identified issues and special cases as seen below:</p>            
 
-            THIS WILL BE STYLED INTO A TABLE 
-            Problem - Solution (Table)
-What if the user enters an invalid input: typos, wrong datatypes, negative values, uppercase/lowercase that cannot be matched with the dataset values. To solve this, we added an event controlled loop as a validation step, ensuring that the user repeatedly enters values until a valid input is reached. 
-What if none of the books can be read in the timeframe: We offer the user the option to try again, where they can change the speed and timeframe inputs, or opt for a different genre. To achieve this, we placed the whole algorithm inside a while loop based on a boolean operator. The user is asked at the end if they want to try again, where operator is changed to FALSE if they answer “No”. The user is also offered a chance to end the program by inputting “End” to the first prompt. 
-What if there are no books available in the selected genre - Given that we offered the genre choices to the user based on the data available in our dataset, this would not be the case. However, we added a validation check in the form of an IF selection, that checks if the new array is empty, upon which condition, a message is displayed to the user and they are offered to try again.   
-What if there is nothing to sort? - Also a result of the previously mentioned incident (no books meeting the criteria), the algorithm might be faced with an empty array to sort through. Therefore, we added our sorting step inside an IF clause that checks for this event. We also accounted for the possibility of there being fewer than 10 books to sort in the conditions of our sorting and displaying steps. 
+
+             <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Problems</th>
+                            <th>Solutions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>What if the user enters an invalid input?</td>
+                            <td>These could be typos, wrong datatypes, negative values, trailing white spaces, uppercase/lowercase that cannot be matched with the dataset values etc. To solve this, we added an event controlled loop as a validation step, ensuring that the user repeatedly enters values until a valid input is reached.</td>
+                        </tr>
+                        <tr>
+                            <td>What if none of the books can be read in the timeframe?</td>
+                            <td>We offer the user the option to try again, where they can change the speed and timeframe inputs, or opt for a different genre. To achieve this, we placed the whole algorithm inside a while loop based on a boolean operator. The user is asked at the end if they want to try again, where operator is changed to FALSE if they answer “No”. The user is also offered a chance to end the program by inputting “End” to the first prompt.</td>
+                        </tr>
+                        <tr>
+                            <td>What if there are no books available in the selected genre?</td>
+                            <td>Given that we offered the genre choices to the user based on the data available in our dataset, this would not be the case. However, we added a validation check in the form of an IF selection, that checks if the new array is empty, upon which condition, a message is displayed to the user and they are offered to try again.</td>
+                        </tr>
+                        <tr>
+                            <td>What if there is nothing to sort?</td>
+                            <td>Also a result of the previously mentioned incident (no books meeting the criteria), the algorithm might be faced with an empty array to sort through. Therefore, we added our sorting step inside an IF clause that checks for this event. We also accounted for the possibility of there being fewer than 10 books to sort in the conditions of our sorting and displaying steps.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
 
             <div style="clear: both;"></div>
 
             <h2>Implementation phase: Python</h2>
             <p>After the pseudocode instructions were completed, we decided to translate our algorithm into the Python programming language, so that it could be executed and tested using our actual dataset.</p>
             <p>For this step, strict syntax rules had to be followed. To check for syntax errors, we checked the code in an online python editor, before running it on our local system importing the csv dataset.</p>
-            <p>To work with our csv dataset, we installed and imported the pandas library, used for reading, filtering, sorting, and analyzing datasets.</p>    
+                
             
+            <h3>Dataset Normalization and Analysis</h3>
+            <p>To work with our csv dataset, we installed and imported the pandas library, used for reading, filtering, sorting, and analyzing datasets.</p>
+            <p>Although the whole algorithm development followed an iterative process (changing the dataset according to the algorithm's needs and contructing the algorithm based on the data), paying careful attention to the relationship between the two became especially important in the Python coding step. 
+                To match values correctly and allow for filtering, we made sure the dataset column names and data types aligned.</p> 
+            <p>Furthermore, we used string normalization, converting all string values in the genres column and user inputs to lower case, and stripping them of potential unnecessary white spaces to ensure consistent formatting:</p>
+            <code>filtered = books[books["genres"].str.lower().str.strip() == user_genre.lower().strip()]</code> 
             <h3>Demonstration run of the algorithm</h3>
-            <img src="img/trialrun.png" alt="Execution lines of the python code of the algorithm" id="picbottom"/>
+            <img src="" alt="Execution lines of the python code of the algorithm" id="picbottom"/>
+
+            
+
 
             <h2>Maintenance phase: Limitations and Future Recommendations</h2>
             <p>We recognise the limitations of our algorithm in providing book recommendations given the limited dataset used. At this stage of the project, the algorithm can recommend books from a limited number of genres. Furthermore, the user is unaware of how many books the top 10 are chosen from. For future directions, we recommend extending the dataset,  improving the user recommendations. We also recommend regularly updating the dataset to include new book releases and updated user review scores.</p>

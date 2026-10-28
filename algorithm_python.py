@@ -22,16 +22,16 @@ while(run_again):
  speed = input("How many pages a day do you read?")
  while not speed.isdigit() or int(speed) <= 0:
    print("Enter a positive number please:")
-   speed = input()
+   speed = input().strip()
  speed=int(speed)
  
  timeframe = input("How many days do you have available to read your next book?")
  while not timeframe.isdigit() or int(timeframe) <= 0:
   print("Enter a positive number please:")  
-  timeframe = input()
+  timeframe = input().strip()
  timeframe=int(timeframe)
  
- filtered = books[books["genres"] == user_genre].copy()
+ filtered = books[books["genres"].str.lower().str.strip() == user_genre.lower().strip()].copy()
  
  filtered["days"] = filtered["page_count"]/speed
  
@@ -49,11 +49,11 @@ while(run_again):
  
  
  print("Would you like to try again? Write yes or no")
- user_runagain=input().lower()
+ user_runagain=input().lower().strip()
   
  while user_runagain != "yes" and user_runagain != "no":
   print ("Invalid input, please write yes or no.")
-  user_runagain=input().lower
+  user_runagain=input().lower().strip()
   
  if user_runagain=="no":
   run_again=False
