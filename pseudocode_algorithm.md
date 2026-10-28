@@ -22,13 +22,16 @@ WHILE (runagain is TRUE)
 //get user input about time available and speed of reading
 	WRITE "How many days do you have available to read your next book?"
 	GET timeframe 
+    WHILE (timeframe is not a number OR timeframe <= 0)
+    	WRITE "Please enter a positive number of days."
+    	GET timeframe
+	ENDWHILE
+	
 	WRITE “How many pages a day do you read?” 
 	GET speed 
- //validate for negative answers
-	WHILE (timeframe <= 0 OR speed <= 0)
-        WRITE "Please enter positive numbers for days available and pages read per day (press enter after each)."
-        GET timeframe
-        GET speed
+	WHILE (speed is not a number OR speed <= 0)
+    	WRITE "Please enter a positive number of pages per day."
+    	GET speed
 	ENDWHILE
 
 
