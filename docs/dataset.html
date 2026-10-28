@@ -52,6 +52,11 @@
                     </thead>
                     <tbody>
                         <tr>
+                            <td><code>book_id</code></td>
+                            <td>Integer</td>
+                            <td>Unique identifier for each record</td>
+                        </tr>
+                        <tr>
                             <td><code>title</code></td>
                             <td>String</td>
                             <td>The full title of the publication.</td>
@@ -62,19 +67,29 @@
                             <td>The author credited for the work.</td>
                         </tr>
                         <tr>
-                            <td><code>genre</code></td>
-                            <td>String</td>
-                            <td>The categorical classification of the book.</td>
-                        </tr>
-                        <tr>
                             <td><code>average_rating</code></td>
                             <td>Float</td>
                             <td>Average reader score on a scale from 1.0 to 5.0.</td>
                         </tr>
                         <tr>
-                            <td><code>num_pages</code></td>
+                            <td><code>rating_count</code></td>
+                            <td>Integer</td>
+                            <td>Count of user ratings the average is calculated from</td>
+                        </tr>
+                        <tr>
+                            <td><code>page_count</code></td>
                             <td>Integer</td>
                             <td>Total page count used for reading pace estimation.</td>
+                        </tr>
+                        <tr>
+                            <td><code>year</code></td>
+                            <td>Integer</td>
+                            <td>Year of publication of the book</td>
+                        </tr>
+                        <tr>
+                            <td><code>genre</code></td>
+                            <td>String</td>
+                            <td>The categorical classification of the book.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -122,7 +137,8 @@
 
 
             <p>
-                <strong>Dataset Preparation:</strong> We prepared a cleaned CSV file containing the columns needed for our recommendation algorithm: book title, author, rating, rating count, page count, publication year, and genre. We selected four genres for the project: Fantasy, Classics, Fiction, and Young Adult. The prepared file is stored in the project's GitHub repository for use by the Python algorithm.
+                <strong>Dataset Preparation:</strong> We prepared a cleaned CSV file containing the columns needed for our recommendation algorithm: title, author, average rating, rating count, page count, publication year, and genre. 
+                We added a book id attribute to be able to uniquely identify the records. We selected four genres for the project: Fantasy, Classics, Fiction, and Young Adult. The prepared file is stored in the project's GitHub repository for use by the Python algorithm.
             </p>
             
 
