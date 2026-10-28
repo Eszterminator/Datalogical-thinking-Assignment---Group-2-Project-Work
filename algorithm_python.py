@@ -29,7 +29,7 @@ while(run_again):
   timeframe = input().strip()
  timeframe=int(timeframe)
  
- filtered = books[books["genres"].str.lower().str.strip() == user_genre.lower().strip()].copy()
+ filtered = books[books["genre"].str.lower().str.strip() == user_genre.lower().strip()].copy()
  
  filtered["days"] = filtered["page_count"]/speed
  
