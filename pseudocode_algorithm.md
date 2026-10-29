@@ -11,7 +11,7 @@ WHILE (runagain is TRUE)
 	WHILE (user_genre is not "fantasy” AND user_genre is not "classics" AND user_genre is not "fiction" AND user_genre is not "young adult" AND user_genre is not "end")
 		WRITE "Invalid input, please try again. Pick a genre from Fantasy/Classics/Fiction/Young Adult or write End to exit." 
 		GET user_genre
-		SET user_genre to TO_LOWER(user_genre)
+		SET user_genre to TRIM(TO_LOWER(user_genre))
 	ENDWHILE
 
 	IF (user_genre is "end")
@@ -57,13 +57,14 @@ WHILE (runagain is TRUE)
 	IF (Filtered is EMPTY)
 		WRITE "None of the”, user_genre, “books could be read within the specified time limit at the specified speed.”
 	ELSE
-     //find the highest rated 10 of them to display final recommendations 
+     //find the highest rated 10 of them to display final recommendations (ratings descending and time they take ascending)
 		SET firstUnsorted to 0
 		WHILE (firstUnsorted<=9 AND firstUnsorted < length(Filtered)-1)
 			SET indexOfBiggest to firstUnsorted
 			SET index to firstUnsorted + 1 
 			WHILE (index <= length(Filtered) - 1)
-				IF (Filtered[index].average_rating > Filtered[indexOfBiggest].average_rating)
+				IF (Filtered[index].average_rating > Filtered[indexOfBiggest].average_rating) OR (Filtered[index].average_rating = Filtered[indexOfBiggest].average_rating AND
+            Filtered[index].days < Filtered[indexOfBiggest].days)
 					SET indexOfBiggest to index
 				ENDIF
 				SET index to index + 1 		
@@ -73,7 +74,7 @@ WHILE (runagain is TRUE)
 			SET Filtered[indexOfBiggest] to tempItem
 			SET firstUnsorted to firstUnsorted + 1 	
 		ENDWHILE
-	 //and display the top 10 
+
 	 WRITE "Please see the top-rated ", user_genre, "books that can be read in ",timeframe," days and the number of days they would each take to read: ”
 	 	SET index to 0
 		WHILE (index < length(Filtered) AND index <= 9)
@@ -83,7 +84,6 @@ WHILE (runagain is TRUE)
 		ENDWHILE	
 	ENDIF 
 	
- //check whether user wants to try another genre
 	WRITE “Would you like to try again? Write yes or no”
 		GET user_runagain 
 		SET user_runagain to TO_LOWER(user_runagain)
