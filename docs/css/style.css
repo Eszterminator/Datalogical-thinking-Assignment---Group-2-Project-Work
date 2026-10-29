@@ -200,6 +200,7 @@ footer {
 }
 
 /* --- Figure & Caption Styling --- */
+
 .featured-figure {
   float: right;
   margin: 0 0 1.2rem 1.8rem;
@@ -210,7 +211,7 @@ footer {
   align-items: center;
 }
 
-.featured-figure a {
+.featured-figure > a {
   display: block;
   width: 100%;
 }
@@ -230,9 +231,12 @@ footer {
   margin-top: 8px;
   text-align: center;
   width: 100%;
+  white-space: nowrap; 
 }
 
+
 .featured-figure figcaption a {
+  display: inline;
   color: #2B1700;
   text-decoration: underline;
 }
