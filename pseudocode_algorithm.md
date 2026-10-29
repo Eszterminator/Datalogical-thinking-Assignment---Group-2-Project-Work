@@ -43,7 +43,7 @@ WHILE (runagain is TRUE)
 	SET index to 0
 	
 	WHILE (index < length(books))
-		SET book_genre to TO_LOWER(books[index].genre)
+		SET book_genre to TRIM(TO_LOWER(books[index].genre))
 		IF (book_genre is user_genre)
 			SET days to books[index].page_count/speed
 			IF (days <= timeframe) 
