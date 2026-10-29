@@ -46,7 +46,7 @@
                 <li>Book title, author, year of publication: to help the user identify the books we are recommending</li>
                 <li>Average Goodreads rating: to find the highest rated books to recommend</li>
                 <li>Ratings count: to check the reliability of the averages</li>
-                <li>Page number: to calculate how long reading each book would take</li>
+                <li>Page count: to calculate how long reading each book would take</li>
                 <li>User's required genre, speed of reading, timeframe: to offer personalised recommendations</li>
             </ul>
             <p>
@@ -63,8 +63,8 @@
                 <li>Select all the books from the dataset that are in the user's requested genre</li>
                 <li>Calculate how long each of the selected books would take to read</li>
                 <li>Filter the above books for those that fit in the user’s timeframe</li>
-                <li>Sort the selected list of books by the average rating, in descending order</li>
-                <li>Display the recommendations: the top 10 rated books (or fewer, if not available), that can be read under the time given at the speed given - with their respective reading durations</li>
+                <li>Sort the selected list of books by the average rating, in descending order and by their reading time ascending</li>
+                <li>Display the recommendations: the top 10 rated books (or fewer, if not available), that can be read under the time given at the speed given, with their respective reading durations</li>
             </ol>
             <p>Thus, we identified what the solution would look like, the data needed to reach it, and the steps to take to get there.</p>
             <p>Upon discussion, we came to the conclusion that leaving the genre question open ("Which genre would you like to read?") would require a very large dataset, 
@@ -82,13 +82,12 @@
                     <li>To process the 2D data in the dataset, we opted for arrays. We wrote a searching algorithm going through the books in the dataset, 
                         adding the ones that fulfilled the genre and the timeframe conditions to a new array. At this stage, we also added a new attribute variable to the selected 
                         records: days they take to read, calculated by dividing the page numbers by the user’s speed of reading (measured in pages per day).</li>
-                    <li>For the sorting of the selected books by average rating in descending order, we opted for a selection sort algorithm, since we only needed 
-                        the first 10 highest rated books. This way, we could stop the algorithm after the first 10 biggest rated books were found, 
+                    <li>For the sorting of the selected books by average rating in descending order, and reading time in ascending order, we opted for a selection sort algorithm, 
+                        since we only needed the first 10 highest rated books. This way, we could stop the algorithm after the first 10 biggest rated books were found, 
                         avoiding unnecessary sorting, and making it faster and more efficient than sorting through the whole list.</li>
                     <li>Originally, we wrote instructions for each step as outlined above, however, we later optimised the algorithm by uniting steps 2-4 into a single 
-                        WHILE loop. Instead of checking all the books for the genre condition, copying the selection into an array, then checking the books in the 
-                        new array for the time condition, we only run through the books once, checking each for genre and time, adding the ones that meet both 
-                        conditions to a new array. Thus, we save time and memory space.</li>
+                        WHILE loop. Instead of checking all the books for the genre condition, copying the selection into a new array, then checking the books in the 
+                        new array for the time condition, we only run through the records once and copy those that meet both criteria. Thus, we save time and memory space.</li>
                 </ul>
             </div>
 
@@ -114,7 +113,7 @@
                         <tr>
                             <td>What if the user enters an invalid input?</td>
                             <td>These could be typos, wrong datatypes, negative values, trailing white spaces, case-sensitivity issues when matching with dataset values. 
-                                To account for case-sensitivity in matching up values, we converted user inputs and genre data values to lower case. We also ran an event 
+                                To account for these, we converted user inputs and genre data values to lower case and trimmed them of white speaces. We also ran an event 
                                 controlled loop to check for invalid user input.</td>
                         </tr>
                         <tr>
