@@ -67,8 +67,8 @@
                 <li>Display the recommendations: the top 10 rated books (or fewer, if not available), that can be read under the time given at the speed given, with their respective reading durations</li>
             </ol>
             <p>Thus, we identified what the solution would look like, the data needed to reach it, and the steps to take to get there.</p>
-            <p>Upon discussion, we came to the conclusion that leaving the genre question open ("Which genre would you like to read?") would require a very large dataset, 
-                exceeding the scope of this project. Therefore, we decided to limit the genre choices to 4 (Fantasy, Fiction, Classics, Young Adult) at this stage, 
+            <p>We decided that leaving the genre question open ("Which genre would you like to read?") would require a very large dataset, 
+                exceeding the scope of this project. We chose to limit the genre choices to 4 (Fantasy, Fiction, Classics, Young Adult) at this stage, 
                 to keep the dataset manageable. We picked the genres from the dataset that had the most books available in them, to be able to check the reliability 
                 of our top 10 sorting algorithm.</p>
             
@@ -83,11 +83,10 @@
                         adding the ones that fulfilled the genre and the timeframe conditions to a new array. At this stage, we also added a new attribute variable to the selected 
                         records: days they take to read, calculated by dividing the page numbers by the user’s speed of reading (measured in pages per day).</li>
                     <li>For the sorting of the selected books by average rating in descending order, and reading time in ascending order, we opted for a selection sort algorithm, 
-                        since we only needed the first 10 highest rated books. This way, we could stop the algorithm after the first 10 biggest rated books were found, 
+                        since we only needed the first 10 highest rated books. The algorithm stops after the first 10 biggest rated books are found, 
                         avoiding unnecessary sorting, and making it faster and more efficient than sorting through the whole list.</li>
                     <li>Originally, we wrote instructions for each step as outlined above, however, we later optimised the algorithm by uniting steps 2-4 into a single 
-                        WHILE loop. Instead of checking all the books for the genre condition, copying the selection into a new array, then checking the books in the 
-                        new array for the time condition, we only run through the records once and copy those that meet both criteria. Thus, we save time and memory space.</li>
+                        WHILE loop. By checking each records for both conditions before copying them in the new array, we save time and memory space.</li>
                 </ul>
             </div>
 
@@ -114,20 +113,21 @@
                             <td>What if the user enters an invalid input?</td>
                             <td>These could be typos, wrong datatypes, negative values, trailing white spaces, case-sensitivity issues when matching with dataset values. 
                                 To account for these, we converted user inputs and genre data values to lower case and trimmed them of white speaces. We also ran an event 
-                                controlled loop to check for invalid user input.</td>
+                                controlled loop to check for invalid user inputs and wrong data types (non-numeric values for speed, timeframe).</td>
                         </tr>
                         <tr>
                             <td>What if there are no books that meet the genre and timeframe criteria?</td>
                             <td>The genre choices were based on the records in the dataset, however, this does not mean there will always be books in the right genre 
-                                that fit the specified timelimit at the given speed. Therefore, we added a validation check in the form of an IF selection, that checks if the filtered array is empty, 
-                                upon which condition, a message is displayed to the user and they are offered to try again. For this reason, we placed the whole algorithm inside a while loop 
-                                based on a boolean operator. We moved the top 10 sorting step inside the if clause, to avoid the algorithm trying to sort through an empty array. 
-                                We also accounted for the possibility of there being fewer than 10 books to sort in the conditions of our sorting and displaying steps. </td>
+                                that fit the specified timelimit at the given speed. Therefore, we added a validation step checking if the filtered array is empty, 
+                                upon which condition, a message is displayed to the user and they are offered to try again. We moved the top 10 sorting step inside this IF 
+                                clause, to avoid the algorithm trying to sort through an empty array. We also accounted for the possibility of there being fewer than 10
+                                books to sort in the conditions of our sorting and displaying steps. We placed the whole algorithm inside a while loop
+                                based on a boolean operator so it would run repeatedly until the user requests otherwise. </td>
                         </tr>
                         <tr>
                             <td>What if the time calculations result in fractional values?</td>
                             <td>While 4.5 days might be interpreted as 5 days needed to read a book, we decided that for the user's benefit we will keep 
-                                the results as fractions, to give a closer approximation of the book's length. 0.5 days could make a difference in the reader's final choice.</td>
+                                the results as fractions, to give a closer approximation of the book's length. 0.5 days, for instance, could make a difference in the reader's final choice.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -153,7 +153,7 @@
                 became especially important in the Python coding step. To match values correctly and allow for filtering, we made sure the dataset column names and data types 
                 aligned.</p> 
             <p>Furthermore, we applied data preprocessing, cleaning, and string normalization to ensure data consistency and avoid errors. We checked for missing values and wrong data types in the dataset, converted all string values 
-                in the genres column and user inputs to lower case, and stripped them of potential unnecessary white spaces to ensure consistent formatting: </p>
+                in the genres column and user inputs to lower case, checked for missing values, and stripped them of potential unnecessary white spaces to ensure consistent formatting: </p>
             <p><code>books["genre"] = books["genre"].fillna("").str.lower().str.strip()</code></p>
             <p><code>books["page_count"] = pd.to_numeric(books["page_count"], errors="coerce"</code></p> 
             
