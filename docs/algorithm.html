@@ -79,8 +79,8 @@
             <div class="decisions">
                 <p style="font-weight: bold; text-align: center;">Decisions</p>
                 <ul>    
-                    <li>To process the 2D data in the dataset, we opted for arrays. We wrote a searching algorithm going through the books in the dataset, 
-                        adding the ones that fulfilled the genre and the timeframe conditions to a new array. At this stage, we also added a new attribute variable to the selected 
+                    <li>We used arrays to process the 2D dataset. A searching algorithm goes through the books in the dataset, 
+                        adding the ones that fulfilled the genre and the timeframe conditions to a new array. We added a new attribute variable to the selected 
                         records: days they take to read, calculated by dividing the page numbers by the user’s speed of reading (measured in pages per day).</li>
                     <li>For the sorting of the selected books by average rating in descending order, and reading time in ascending order, we opted for a selection sort algorithm, 
                         since we only needed the first 10 highest rated books. The algorithm stops after the first 10 biggest rated books are found, 
@@ -116,9 +116,8 @@
                                 controlled loop to check for invalid user inputs and wrong data types (non-numeric values for speed, timeframe).</td>
                         </tr>
                         <tr>
-                            <td>What if there are no books that meet the genre and timeframe criteria?</td>
-                            <td>The genre choices were based on the records in the dataset, however, this does not mean there will always be books in the right genre 
-                                that fit the specified timelimit at the given speed. Therefore, we added a validation step checking if the filtered array is empty, 
+                            <td>What if there are no books that meet the filtering criteria?</td>
+                            <td>We added a validation step checking if the filtered array is empty, 
                                 upon which condition, a message is displayed to the user and they are offered to try again. We moved the top 10 sorting step inside this IF 
                                 clause, to avoid the algorithm trying to sort through an empty array. We also accounted for the possibility of there being fewer than 10
                                 books to sort in the conditions of our sorting and displaying steps. We placed the whole algorithm inside a while loop
@@ -137,7 +136,8 @@
             <div style="clear: both;"></div>
 
             <h2>Implementation phase: Python</h2>
-            <p>After the pseudocode instructions were completed, we decided to translate our algorithm into the Python programming language, so that it could be executed and tested using our actual dataset.</p>
+            <p>After the pseudocode instructions were completed, we decided to translate our algorithm into the Python programming language, so that it could be 
+                executed and tested using our actual dataset.</p>
             <p>For this step, we followed the logic described in the pseudocode, but updated the code respecting the strict syntax rules of the Python language.</p>
               
             
@@ -149,11 +149,11 @@
                 However, we decided to keep the detailed pseudocode version of the algorithm in our GitHub repository, to refer back to the logic behind 
                 the built-in pandas operations. </p>  
       
-            <p>Although the whole algorithm development and dataset preparation followed an iterative process, paying careful attention to the relationship between the two 
-                became especially important in the Python coding step. To match values correctly and allow for filtering, we made sure the dataset column names and data types 
-                aligned.</p> 
-            <p>Furthermore, we applied data preprocessing, cleaning, and string normalization to ensure data consistency and avoid errors. We checked for missing values and wrong data types in the dataset, converted all string values 
-                in the genres column and user inputs to lower case, checked for missing values, and stripped them of potential unnecessary white spaces to ensure consistent formatting: </p>
+            <p>To match values correctly and allow for filtering, we made sure the dataset column names and data types 
+                aligned. Furthermore, we applied data preprocessing, cleaning, and string normalization to ensure data consistency and avoid errors. 
+                We checked for missing values and wrong data types in the dataset, converted all string values 
+                in the genres column and user inputs to lower case, checked for missing values, and stripped them of potential unnecessary white spaces 
+                for consistent formatting: </p>
             <p><code>books["genre"] = books["genre"].fillna("").str.lower().str.strip()</code></p>
             <p><code>books["page_count"] = pd.to_numeric(books["page_count"], errors="coerce"</code></p> 
             
